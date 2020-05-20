@@ -1,0 +1,1 @@
+../data/detection/images/test/kitti_pedestrian5_375x1240.bgr

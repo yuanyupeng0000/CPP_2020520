@@ -1,0 +1,1 @@
+../data/detection/images/test/horse_dog_car_person_224x224.bgr

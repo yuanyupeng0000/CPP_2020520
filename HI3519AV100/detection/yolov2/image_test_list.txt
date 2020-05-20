@@ -1,0 +1,1 @@
+../data/detection/images/test/000110_416x416.bgr

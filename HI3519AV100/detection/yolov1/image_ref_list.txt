@@ -1,0 +1,5 @@
+./data/detection/images/ref_yolo/000005.png
+./data/detection/images/ref_yolo/000011.png
+./data/detection/images/ref_yolo/000017.png
+./data/detection/images/ref_yolo/000019.png
+./data/detection/images/ref_yolo/000031.png

@@ -1,0 +1,50 @@
+name: "iFEP"
+layer {
+  name: "data0"
+  type: "Input"
+  top: "data0"
+  input_param {
+    shape {
+      dim: 1
+      dim: 1
+      dim: 135
+      dim: 1
+    }
+  }
+}
+layer {
+  name: "data1"
+  type: "Input"
+  top: "data1"
+  input_param {
+    shape {
+      dim: 1
+      dim: 1
+      dim: 135
+      dim: 1
+    }
+  }
+}
+layer {
+  name: "lstm0"
+  type: "LSTM"
+  bottom: "data1"
+  bottom: "data0"
+  top: "lstm0"
+  recurrent_param {
+    num_output: 190
+    expose_hidden: false
+  }
+}
+layer {
+  name: "fc0"
+  type: "InnerProduct"
+  bottom: "lstm0"
+  top: "fc0"
+  inner_product_param {
+    num_output: 55
+    bias_term: true
+    transpose: true
+	axis: 2
+}
+}

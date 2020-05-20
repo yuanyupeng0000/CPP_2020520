@@ -1,0 +1,5 @@
+./data/detection/images/ref_pvanet/000456.jpg
+./data/detection/images/ref_pvanet/000542.jpg
+./data/detection/images/ref_pvanet/001150.jpg
+./data/detection/images/ref_pvanet/001763.jpg
+./data/detection/images/ref_pvanet/004545.jpg

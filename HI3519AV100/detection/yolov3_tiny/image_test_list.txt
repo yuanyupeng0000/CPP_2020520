@@ -1,0 +1,1 @@
+../data/detection/images/test/20191101173428.jpg

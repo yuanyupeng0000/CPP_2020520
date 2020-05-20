@@ -1,0 +1,14 @@
+./data/detection/images/ref_rfcn/000001.jpg
+./data/detection/images/ref_rfcn/000002.jpg
+./data/detection/images/ref_rfcn/000003.jpg
+./data/detection/images/ref_rfcn/000004.jpg
+./data/detection/images/ref_rfcn/000005.jpg
+./data/detection/images/ref_rfcn/000006.jpg
+./data/detection/images/ref_rfcn/000007.jpg
+./data/detection/images/ref_rfcn/000008.jpg
+./data/detection/images/ref_rfcn/000009.jpg
+./data/detection/images/ref_rfcn/000456.jpg
+./data/detection/images/ref_rfcn/000542.jpg
+./data/detection/images/ref_rfcn/001150.jpg
+./data/detection/images/ref_rfcn/001763.jpg
+./data/detection/images/ref_rfcn/004545.jpg

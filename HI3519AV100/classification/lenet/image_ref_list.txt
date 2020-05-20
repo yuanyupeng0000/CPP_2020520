@@ -1,0 +1,9 @@
+./data/classification/lenet/image/ref/1_0.bmp
+./data/classification/lenet/image/ref/2_0.bmp
+./data/classification/lenet/image/ref/3_0.bmp
+./data/classification/lenet/image/ref/4_0.bmp
+./data/classification/lenet/image/ref/5_0.bmp
+./data/classification/lenet/image/ref/6_0.bmp
+./data/classification/lenet/image/ref/7_0.bmp
+./data/classification/lenet/image/ref/8_0.bmp
+./data/classification/lenet/image/ref/9_0.bmp

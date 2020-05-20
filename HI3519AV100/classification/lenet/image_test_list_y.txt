@@ -1,0 +1,1 @@
+../data/classification/lenet/image/test/0_1.y

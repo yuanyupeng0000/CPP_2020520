@@ -1,0 +1,1 @@
+./data/detection/images/ref_SSD/004545.jpg

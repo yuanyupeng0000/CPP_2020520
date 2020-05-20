@@ -1,0 +1,1 @@
+../data/detection/images/test/dog_bike_car_300x300.bgr

@@ -1,0 +1,1 @@
+../data/detection/images/test/double_roipooling_224_224.bgr
