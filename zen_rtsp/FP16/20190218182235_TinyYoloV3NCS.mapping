@@ -1,0 +1,147 @@
+<?xml version="1.0" ?>
+<mapping>
+	<map>
+		<framework name="data" out_port_id="data"/>
+		<IR id="0" name="data" out_port_id="0"/>
+	</map>
+	<map>
+		<framework name="layer1-scale" out_port_id="layer1-conv"/>
+		<IR id="1" name="layer1-conv" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="layer1-act" out_port_id="layer1-conv"/>
+		<IR id="2" name="layer1-act" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer2-maxpool" out_port_id="layer2-maxpool"/>
+		<IR id="3" name="layer2-maxpool" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer3-scale" out_port_id="layer3-conv"/>
+		<IR id="4" name="layer3-conv" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="layer3-act" out_port_id="layer3-conv"/>
+		<IR id="5" name="layer3-act" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer4-maxpool" out_port_id="layer4-maxpool"/>
+		<IR id="6" name="layer4-maxpool" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer5-scale" out_port_id="layer5-conv"/>
+		<IR id="7" name="layer5-conv" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="layer5-act" out_port_id="layer5-conv"/>
+		<IR id="8" name="layer5-act" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer7-scale" out_port_id="layer7-conv"/>
+		<IR id="10" name="layer7-conv" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="layer7-act" out_port_id="layer7-conv"/>
+		<IR id="11" name="layer7-act" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer8-maxpool" out_port_id="layer8-maxpool"/>
+		<IR id="12" name="layer8-maxpool" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer9-scale" out_port_id="layer9-conv"/>
+		<IR id="13" name="layer9-conv" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="layer9-act" out_port_id="layer9-conv"/>
+		<IR id="14" name="layer9-act" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer10-maxpool" out_port_id="layer10-maxpool"/>
+		<IR id="15" name="layer10-maxpool" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer11-scale" out_port_id="layer11-conv"/>
+		<IR id="16" name="layer11-conv" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="layer11-act" out_port_id="layer11-conv"/>
+		<IR id="17" name="layer11-act" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer13-scale" out_port_id="layer13-conv"/>
+		<IR id="18" name="layer13-conv" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="layer13-act" out_port_id="layer13-conv"/>
+		<IR id="19" name="layer13-act" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer14-scale" out_port_id="layer14-conv"/>
+		<IR id="20" name="layer14-conv" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="layer14-act" out_port_id="layer14-conv"/>
+		<IR id="21" name="layer14-act" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer18-route" out_port_id="layer18-route"/>
+		<IR id="22" name="layer18-route" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer19-scale" out_port_id="layer19-conv"/>
+		<IR id="23" name="layer19-conv" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="layer19-act" out_port_id="layer19-conv"/>
+		<IR id="24" name="layer19-act" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer20-upsample" out_port_id="layer20-upsample"/>
+		<IR id="25" name="layer20-upsample" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="layer20-act" out_port_id="layer20-upsample"/>
+		<IR id="26" name="layer20-act" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer21-route" out_port_id="layer21-route"/>
+		<IR id="27" name="layer21-route" out_port_id="2"/>
+	</map>
+	<map>
+		<framework name="layer22-scale" out_port_id="layer22-conv"/>
+		<IR id="28" name="layer22-conv" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="layer22-act" out_port_id="layer22-conv"/>
+		<IR id="29" name="layer22-act" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="TerminalIdentity_58" out_port_id="0"/>
+		<IR id="30" name="layer23-conv" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="layer23-conv" out_port_id="layer23-conv"/>
+		<IR id="30" name="layer23-conv" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="layer15-act" out_port_id="layer15-conv"/>
+		<IR id="32" name="layer15-act" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="layer6-maxpool" out_port_id="layer6-maxpool"/>
+		<IR id="9" name="layer6-maxpool" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="TerminalIdentity_" out_port_id="0"/>
+		<IR id="33" name="layer16-conv" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="layer16-conv" out_port_id="layer16-conv"/>
+		<IR id="33" name="layer16-conv" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="layer15-scale" out_port_id="layer15-conv"/>
+		<IR id="31" name="layer15-conv" out_port_id="3"/>
+	</map>
+</mapping>

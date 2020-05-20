@@ -1,0 +1,25 @@
+//
+#ifndef _ATTRIBUTE_RECOGNITION_H_
+#define _ATTRIBUTE_RECOGNITION_H_
+#ifdef USE_OPENCV
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#endif  // USE_OPENCV
+#define NET_NUM  4
+
+//deploy_file 网络配置文件
+//trained_file 检测网络文件
+//gpu_idx gpu ID
+//net_idx net ID
+void LoadAttriNet(const char* deploy_file,
+			 const char* trained_file,
+			 int gpu_idx, int net_idx);//加载检测网络
+
+//img 检测图像
+//net_idx net ID
+//result 属性值
+void AttriDetect(const cv::Mat& img, int net_idx, int* result);
+
+
+#endif

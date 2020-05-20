@@ -1,0 +1,9 @@
+[Unit]
+Description=OpenSSH server daemon
+After=syslog.target network.target auditd.service
+
+[Service]
+ExecStart=/home/zen/wardens start
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,1 @@
+g++ -std=c++11 -fPIC -o main main.cpp -I../../include -L../../lib/opencv3.3 -lopencv_core -lopencv_ml -lopencv_highgui -lopencv_imgproc -lopencv_objdetect -lopencv_video -lopencv_videoio -lopencv_imgcodecs -lopencv_dnn  -Wl,--rpath=./ -L./ -lPlateRecognize

@@ -1,0 +1,18 @@
+//
+#ifndef _ATTRIBUTE_RECOGNITION_H_
+#define _ATTRIBUTE_RECOGNITION_H_
+#define NET_NUM  4
+//deploy_file 网络配置文件
+//trained_file 检测网络文件
+//gpu_idx gpu ID
+//net_idx net ID
+extern "C" void LoadAttriNet(const char* deploy_file,
+			 const char* trained_file,
+			 int gpu_idx, int net_idx);//加载检测网络
+
+//img 检测图像
+//net_idx net ID
+//result 属性值
+extern "C" void AttriDetect(unsigned char* imgdata, int w, int h, int net_idx, int* result);
+
+#endif

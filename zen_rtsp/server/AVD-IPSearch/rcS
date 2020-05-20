@@ -1,0 +1,56 @@
+﻿#!/bin/sh
+#
+echo "run rcS:"
+
+mount -t proc none /proc
+mount -t sysfs none /sys
+mount -t tmpfs none /tmp
+mkdir -p /dev/pts
+mount -t devpts devpts /dev/pts
+mount -t yaffs2 /dev/mtdblock4 /www/
+echo /sbin/mdev > /proc/sys/kernel/hotplug
+/sbin/mdev -s
+
+rm /dev/cmem -rf
+export LOGNAME="root"
+firmware
+cd /etc/init.d
+echo "setup eth0:"
+./netconfig
+./loadmodules.sh
+/usr/sbin/telnetd
+sleep 2
+cd /www/zenith/
+./IPCFG&
+sleep 2
+./armCamApp >/dev/null&
+sleep 5
+./sendarp > /dev/null&
+sleep 2
+./catcharp > /dev/null&
+sleep 2
+boa >/dev/null&
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

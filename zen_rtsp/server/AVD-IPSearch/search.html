@@ -1,0 +1,585 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>查询-ZENITH_CAMERA</title>
+
+<meta name="description" content="overview &amp; stats" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+<!-- bootstrap & fontawesome -->
+<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+
+<!-- page specific plugin styles -->
+<link href="css/jquery-ui.css" rel="stylesheet" />
+<link href="css/ui.jqgrid.css" rel="stylesheet" />
+
+<!-- text fonts -->
+<link rel="stylesheet" href="assets/css/ace-fonts.css" />
+
+<!-- ace styles -->
+<link rel="stylesheet" href="assets/css/ace.min.css" id="main-ace-style" />
+
+<!--[if lte IE 9]>
+	<link rel="stylesheet" href="assets/css/ace-part2.min.css" />
+<![endif]-->
+<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+
+<!--[if lte IE 9]>
+  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+<![endif]-->
+
+
+
+<!-- inline styles related to this page -->
+
+<!-- ace settings handler -->
+<script src="assets/js/ace-extra.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+<!--[if lte IE 8]>
+<script src="assets/js/html5shiv.min.js"></script>
+<script src="assets/js/respond.min.js"></script>
+<![endif]-->
+
+
+
+<script src="js/jqGridExportToExcel.js"></script>
+
+<script type="text/javascript" src="js/jedate/jquery.jedate.js"></script>
+<link type="text/css" rel="stylesheet" href="js/jedate/skin/jedate.css"/>
+
+<style>
+.bodys{ padding:50px 0 0 50px;}
+.datainp{ width:200px; height:30px; border:1px #A5D2EC solid;}
+.datep{ margin-bottom:40px; line-height:24px; margin-right:15px;}
+.wicon{background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAQCAYAAADj5tSrAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAwNi8xNS8xNGnF/oAAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAAAoElEQVQ4jWPceOnNfwYqAz9dYRQ+E7UtwAaGjyUsDAyYYUgJ2HT5LXZLcEmSCnA6duOlN///////H0bDALl8dPH/////Z8FuNW6Qtvw2nL3lyjsGBgYGhlmRqnj1kGwJuqHIlhJlCXq8EOITEsdqCXLEbbr8FisfFkTo+vBZRFZwERNEFFkCiw90nxJtCalxQmzegltCzVyP1RJq5HZ8AABuNZr0628DMwAAAABJRU5ErkJggg=="); background-repeat:no-repeat; background-position:right center;}
+</style>
+</head>
+<body class="no-skin" style = "background-color: white">
+<!-- #section:basics/navbar.layout -->
+<div id="navbar" class="navbar navbar-default" style = "height: 80px">
+	<script type="text/javascript">
+		try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+	</script>
+
+	<div class="navbar-container" id="navbar-container">
+		<!-- #section:basics/sidebar.mobile.toggle -->
+		<div class="navbar-header pull-left" style = "margin-top:10px">
+			<!--button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
+				<span class="sr-only">Toggle sidebar</span>
+
+				<span class="icon-bar"></span>
+
+				<span class="icon-bar"></span>
+
+				<span class="icon-bar"></span>
+			</button-->
+			<!-- #section:basics/navbar.layout.brand -->
+			<a href="#" class="navbar-brand">
+				<big>
+					<i class="fa fa-camera"></i>
+					ZENITH CAMERA
+				</big>
+			</a>
+		</div>
+	</div>
+	<div class="btn-group" style = "float: right; margin: 40px 40px 0 0">
+		<button type="button" class="btn btn-info" id = "view" onclick = "funcBtn('view')">预览</button>
+		<button type="button" class="btn btn-info" id = "config" onclick = "funcBtn('config')">配置</button>
+		<button type="button" class="btn btn-info active" id = "search" onclick = "funcBtn('search')">查询</button>
+		<button style = "display: none" type="button" class="btn btn-info" id = "reserve" onclick = "funcBtn('reserve')">预留</button>
+		<button type="button" class="btn btn-warning" id = "exit" onclick = "funcBtn('exit')">退出</button>
+	</div>
+	<script>
+		function funcBtn(result){
+			if(result == "view"){
+				document.getElementById("view").setAttribute("class", "active btn btn-info");
+				document.getElementById("config").setAttribute("class", "btn btn-info");
+				document.getElementById("search").setAttribute("class", "btn btn-info");
+				document.getElementById("reserve").setAttribute("class", "btn btn-info");
+				window.open("realplay.html", "_self");
+			} else if(result == "config"){
+				document.getElementById("view").setAttribute("class", "btn btn-info");
+				document.getElementById("config").setAttribute("class", "active btn btn-info");
+				document.getElementById("search").setAttribute("class", "btn btn-info");
+				document.getElementById("reserve").setAttribute("class", "btn btn-info");
+				window.open("index.html", "_self");
+			} else if(result == "search"){
+				document.getElementById("view").setAttribute("class", "btn btn-info");
+				document.getElementById("config").setAttribute("class", "btn btn-info");
+				document.getElementById("search").setAttribute("class", "active btn btn-info");
+				document.getElementById("reserve").setAttribute("class", "btn btn-info");
+				window.open("search.html", "_self");
+			} else if(result == "reserve"){
+				document.getElementById("view").setAttribute("class", "btn btn-info");
+				document.getElementById("config").setAttribute("class", "btn btn-info");
+				document.getElementById("search").setAttribute("class", "btn btn-info");
+				document.getElementById("reserve").setAttribute("class", "active btn btn-info");
+			} else if(result == "exit"){
+				document.location = "../login.html"
+			}
+			
+			
+		}
+	</script>
+</div>
+<div class="main-container" id="main-container">
+	<script type="text/javascript">
+		try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+	</script>
+	<!-- /section:basics/sidebar -->
+	<div class="main-content" style = "margin: 5px 20px ">
+		<div style = "margin-top: 0px" class="header smaller lighter grey row" id = "header">
+		<div class = "col-md-7 col-lg-8" style = "border: red solid 0px">
+			<table border = '0'>
+				<tr>
+					<td>开始时间:</td>
+					<td style = "width: 130px">
+						<input placeholder="YYYY-MM-DD" id = "dateStart" class="datainp wicon" type = "text" style = "width:120px; height: 30px"/>
+						
+					</td>
+					<td>自:</td>
+					<td style = "width: 90px">
+						<input placeholder="hh:mm" id = "timeStart" class="datainp wicon" type = "text" style = "width:80px; height: 30px"/>
+						
+					</td>
+					<td>至:</td>
+					<td style = "width: 90px">
+						<input placeholder="hh:mm" id = "timeEnd" class="datainp wicon" type = "text" style = "width:80px; height: 30px"/>
+						
+					</td>
+					<td>
+						<button class = "btn btn-xs btn-primary" style = "margin-left: 25px" id = "DBsearch">
+						<i class="ace-icon fa fa-search bigger-160">查询</i>
+						</button>
+						<img id="loading" src="imgs/loading.gif" style="display:none; margin:-20px 100px;"/>
+					</td>
+					<!--td>开始时间:</td>
+					<td style = "width: 120px">
+						<input placeholder="YYYY-MM-DD hh:mm" id = "dateStart" class="datainp wicon" type = "text" style = "width:150px; height: 30px"/>
+						
+					</td>	
+					<td >&nbsp;&nbsp;&nbsp;结束时间:</td>
+					<td style = "width: 120px">
+						
+						<input placeholder="YYYY-MM-DD hh:mm" id = "dateEnd" class="datainp wicon" type = "text" style = "width:150px; height: 30px"/>
+						
+					</td>
+					<td>
+						<button class = "btn btn-xs btn-primary" style = "margin-left: 25px" id = "DBsearch">
+						<i class="ace-icon fa fa-search bigger-160">查询</i>
+						</button>
+						<img id="loading" src="imgs/loading.gif" style="display:none; margin:-20px 100px;"/>
+					</td-->
+					<!--td style = "float:right">
+						<button class = "btn btn-xs btn-primary" style = "margin-right: 50px">
+						<i class="ace-icon glyphicon glyphicon-export bigger-160">导出Excel</i>
+						</button>
+					</td-->
+				</tr>
+			</table>
+		</div>
+		<div class = "col-md-5 col-lg-4 " style = "border: red solid 0px">
+			<table>
+				<tr>
+					<td style = "width: 60px">数据导出</td>
+					<td>
+						<select  style = "height: 30px">
+							<option value = "dd">按日导出</option>
+						</select>
+					</td>
+					<td style = "width: 130px">
+						<input placeholder="YYYY-MM-DD" id = "date" class="datainp wicon" type = "text" style = "width:120px; height: 30px"/>
+					</td>
+					<td>
+						<button type = "button" class = "btn-xs btn-primary ace-icon glyphicon glyphicon-export bigger-110" onclick = "exportExcel()">导出Excel</button>
+						<!--i class="ace-icon glyphicon glyphicon-export bigger-160" >导出Excel</i-->
+					</td>
+				</tr>
+			</table>
+		</div>
+		</div>
+		<div style = "border: 1px solid #eee; margin-top: -10px" id = "div_list">
+			<table id="grid-table"></table>
+			<div id="grid-pager"></div>
+		</div>
+			
+	</div><!-- /.main-content -->
+	
+	<div class="footer" style = "display: none">
+		<div class="footer-inner">
+			<!-- #section:basics/footer -->
+			<div class="footer-content">
+				<span class="bigger-120">
+					<span class="blue bolder">
+						<a href = "http://www.ztits.net/">深圳市新创中天信息科技发展有限公司&copy; 2017
+						</a>
+					</span>
+				</span>
+
+				&nbsp; &nbsp;
+				<span class="action-buttons">
+					<a href="http://www.ztits.net/shfw/index_27.aspx">
+						<i class="ace-icon fa fa-twitter-square light-blue bigger-150">联系我们</i>
+					</a>
+				</span>
+			</div>
+
+			<!-- /section:basics/footer -->
+		</div>
+	</div>
+
+	<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+		<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+	</a>
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+<script type="text/javascript">
+	window.jQuery || document.write("<script src='assets/js/jquery.min.js'>"+"<"+"/script>");
+</script>
+
+<!-- <![endif]-->
+
+
+<!--script type="text/javascript">
+	if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+</script-->
+<script src="assets/js/bootstrap.min.js"></script>
+
+<!-- page specific plugin scripts -->
+
+<!--[if lte IE 8]>
+  <script src="assets/js/excanvas.min.js"></script>
+<![endif]-->
+
+<!-- ace scripts -->
+<script src="assets/js/ace-elements.min.js"></script>
+<script src="assets/js/ace.min.js"></script>
+
+<script src="jqGrid/jquery.jqGrid.src.js"></script>
+<script src="jqGrid/i18n/grid.locale-cn.js"></script>
+<script src="jqGrid/jqGridComm.js"></script>
+
+<!-- basic scripts -->
+<script>
+
+$("#dateStart").jeDate({
+    isinitVal:true,
+    festival:false,
+    ishmsVal:false,
+    minDate: '1900-01-01 00:00:00',
+    maxDate: $.nowDate(0),
+    format:"YYYY-MM-DD",
+    zIndex:3000,
+});
+$("#date").jeDate({
+    isinitVal:true,
+    festival:false,
+    ishmsVal:false,
+    minDate: '1900-01-01 00:00:00',
+    maxDate: $.nowDate(0),
+    format:"YYYY-MM-DD",
+    zIndex:3000,
+});
+$("#timeStart").jeDate({
+    isinitVal:false,
+    festival:true,
+    ishmsVal:false,
+    minDate: '1900-01-01 00:00:00',
+    maxDate: $.nowDate(0),
+    format:"hh:mm",
+    zIndex:3000,
+});
+$("#timeEnd").jeDate({
+    isinitVal:false,
+    festival:true,
+    ishmsVal:false,
+    minDate: '1900-01-01 00:00:00',
+    maxDate: $.nowDate(0),
+    format:"hh:mm",
+    zIndex:3000,
+});
+var gridHeight = 400;
+function changeGridHeight(){
+	gridHeight = document.documentElement.clientHeight - document.getElementById("navbar").offsetHeight - document.getElementById("header").offsetHeight - 200;
+	//gridHeight = 420;
+	//alert();
+	if(gridHeight <= 400)
+		gridHeight = 400;
+}
+window.onresize = function(){  
+	 changeGridHeight();  
+}
+$(function(){
+	initDatetime();
+	initJqgrid();
+	changeGridHeight();
+	$("#DBsearch").click(function(){
+		try{	
+			var DateStart = $.trim($("#dateStart").val());
+			var strTimeStart = $.trim($("#timeStart").val());
+			var strTimeEnd = $.trim($("#timeEnd").val());
+			if(DateStart.length != 10) {
+				alert("日期格式应是：1900-01-01");
+				return -1;
+			}
+			if(strTimeStart.length != 5 || strTimeEnd.length != 5) {
+				alert("时间格式应是：00:00");
+				return -1;
+			}
+			var strDateStart = DateStart + " " + strTimeStart;
+			var strDateEnd = DateStart + " " + strTimeEnd;
+			document.getElementById("loading").style.display="block";
+			//alert("cgi-bin/floatstatic.cgi?nodeid=41&dateStart="+strDateStart+"&dateEnd="+strDateEnd+"&findorget=1&t="+Math.random());
+			$.ajax({
+				url: "cgi-bin/floatstatic.cgi?nodeid=41&dateStart="+strDateStart+"&dateEnd="+strDateEnd+"&findorget=1&t="+Math.random(),
+				//url: "cgi-bin/floatstatic.cgi?nodeid=41&datetime="+"2017-03-20"+"&starthour="+"00:00"+"&endhour="+"15:25"+"&page="+"1"+"&findorget=1&t="+Math.random(),
+				contentType: "application/x-www-form-urlencoded; charset=utf-8", 
+				dataType:"html",
+				success:function(datas)
+				{
+					//alert(datas);
+					//document.getElementById("ssssss").value = datas;
+					document.getElementById("loading").style.display="none";
+					if( datas=="open db error!" )
+					{	
+						alert("打开数据库失败");
+						return;
+					}if( datas=="error" )
+					{	
+						alert("没有数据");
+						return;
+					}  else if(datas == "empty")
+					{
+						alert("没有结果");
+						return;
+					} 
+					$("#grid-table").GridUnload();
+					loadGridData(datas);
+				},
+				error:function(s, e, obj)
+				{
+					document.getElementById("loading").style.display="none";
+					alert("查询失败");
+				}
+			});
+		}catch(err) {
+			alert(err);
+		}	
+		
+	});
+});
+
+function initDatetime() {
+	var d = new Date();
+    var dyear = d.getYear();
+    if (dyear < 1900) dyear = dyear + 1900;
+	var month, date, hour, minute, secend;
+	if ((d.getMonth() + 1) < 10) {
+		month = "0" + (d.getMonth() + 1);
+	} else {
+		month = d.getMonth() + 1;
+	}
+	if ((d.getDate()) < 10) {
+		date = "0" + d.getDate();
+	} else {
+		date = d.getDate();
+	}
+	if ((d.getHours()) < 10) {
+		hour = "0" + d.getHours();
+	} else {
+		hour = d.getHours();
+	}
+	if ((d.getMinutes()) < 10) {
+		minute = "0" + d.getMinutes();
+	} else {
+		minute = d.getMinutes();
+	}
+	if ((d.getSeconds()) < 10) {
+		secend = "0" + d.getSeconds();
+	} else {
+		secend = d.getSeconds();
+	}
+    document.getElementById("timeStart").value = "00:00";
+	document.getElementById("timeEnd").value = hour + ':' + minute;
+
+}
+
+
+function initJqgrid() {
+	var DateStart = $.trim($("#dateStart").val());
+	var strTimeStart = $.trim($("#timeStart").val());
+	var strTimeEnd = $.trim($("#timeEnd").val());
+	
+	var strDateStart = DateStart + " " + strTimeStart;
+	var strDateEnd = DateStart + " " + strTimeEnd;
+	document.getElementById("loading").style.display="block";
+	//alert("cgi-bin/floatstatic.cgi?nodeid=41&dateStart="+strDateStart+"&dateEnd="+strDateEnd+"&findorget=1&t="+Math.random());
+	var jqGridData = "";
+	$.ajax({
+		//url: "cgi-bin/floatstatic.cgi?nodeid=41&dateStart="+"2017-03-22 00:00"+"&dateEnd="+"2017-03-22 10:00"+"&findorget=1&t="+Math.random(),
+		url: "cgi-bin/floatstatic.cgi?nodeid=41&dateStart="+strDateStart+"&dateEnd="+strDateEnd+"&findorget=1&t="+Math.random(),
+		//url: "cgi-bin/floatstatic.cgi?nodeid=41&datetime="+"2017-03-22"+"&starthour="+"00:00"+"&endhour="+"15:25"+"&page="+"1"+"&findorget=1&t="+Math.random(),
+		contentType: "application/x-www-form-urlencoded;charset=utf-8", 
+		dataType:"html",
+		success:function(datas)
+		{
+			//alert(datas);
+			//document.getElementById("ssssss").value = datas;
+			document.getElementById("loading").style.display="none";
+			if( datas=="open db error!" ) {	
+				jqGridData = "";
+			} else if( datas=="error" ) {	
+				jqGridData = "";
+			} else if(datas == "empty") {
+				jqGridData = "";
+			} else {
+				jqGridData = datas;
+			} 
+			
+			loadGridData(jqGridData);
+			
+		},
+		error:function(s, e, obj)
+		{
+			document.getElementById("loading").style.display="none";
+			loadGridData(jqGridData);
+		}
+	});
+	//gridData = eval('('+gridData')');
+	//alert("======"+gridData);
+}
+
+function loadGridData(datas){
+	try{
+		//alert("loadGridData");
+		//alert(datas);
+		var gridData = "";
+		if(datas != "") {
+			gridData = eval('(' + datas + ')');
+			//alert(gridData.length);
+			var i = 0;
+			for(i = 0; i < gridData.length; i++) {
+				gridData[i]['id'] = i + 1;
+			}
+		}
+		jQuery(function ($) {
+			//resize to fit page size
+			$(window).on('resize.jqGrid', function () {
+				$("#grid-table").jqGrid( 'setGridWidth', $(".main-content").width() );
+			});
+			//resize on sidebar collapse/expand
+			var parent_column = $("#grid-table").closest('[class*="col-"]');
+			$(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
+				if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
+					//setTimeout is for webkit only to give time for DOM changes and then redraw!!!
+					setTimeout(function() {
+						$("#grid-table").jqGrid( 'setGridWidth', parent_column.width() );
+					}, 0);
+				}
+			});
+			//alert(gridHeight);
+			jQuery("#grid-table").jqGrid({
+				datatype: "local",
+				data: gridData,
+				height: gridHeight,
+				colNames: ['编号', '统计时间', '周期(s)', '地点', '检测器ID', '车道', '车流量(辆)', '平均车速(km/h)', '平均车长(m)', '平均占有率(%)', '车头间距(m)', '车头时距(s)', '超大型车(辆)', '大型车(辆)', '中型车(辆)', '小型车(辆)', '微型车(辆)', '车队长度(m)', '当前路况'],
+				colModel: [
+					{ name: 'id', index: 'id', width: '100', align: 'center'},
+					{ name: 'starttime', index: 'starttime', align: 'center', width: '240'},
+					{ name: 'period', index: 'period', sortable: 'false', width: '110', align: 'center'},
+					{ name: 'place', index: 'place', width: '150', sortable: 'false', align: 'center'},
+					{ name: 'detectId', index: 'detectId', sortable: 'false', align: 'center', width: '120'},
+					{ name: 'laneNo', index: 'laneNo', width: '80', sortable: 'false', align: 'center'},
+					{ name: 'total_cnt', index: 'total_cnt', sortable: 'false', align: 'center', width: '150'},
+					{ name: 'avg_speed', index: 'avg_speed', sortable: 'false', align: 'center', width: '210'},
+					{ name: 'avg_length', index: 'avg_length', sortable: 'false', align: 'center', width: '170'},
+					{ name: 'avg_up', index: 'avg_up', sortable: 'false', align: 'center', width: '200'},
+					{ name: 'head_dis', index: 'head_dis', sortable: 'false', align: 'center', width: '170'},
+					{ name: 'time_dis', index: 'time_dis', sortable: 'false', align: 'center', width: '160'},
+					{ name: 'huge_cnt', index: 'huge_cnt', sortable: 'false', align: 'center', width: '180'},
+					{ name: 'large_cnt', index: 'large_cnt', sortable: 'false', align: 'center', width: '150'},
+					{ name: 'mid_cnt', index: 'mid_cnt', sortable: 'false', align: 'center', width: '150'},
+					{ name: 'small_cnt', index: 'small_cnt', sortable: 'false', align: 'center', width: '150'},
+					{ name: 'tiny_cnt', index: 'tiny_cnt', sortable: 'false', align: 'center', width: '150'},
+					{ name: 'team_length', index: 'team_length', sortable: 'false', align: 'center', width: '170'},
+					{ name: 'trafficsta', index: 'trafficsta', sortable: 'false', align: 'center', width: '140'},
+					
+				],
+				viewrecords: true,
+				rownumber:false,
+				rowNum: 25,
+				rowList: [15, 25, 50],
+				pagerpos: 'center',
+				recordpos: 'right',
+				pager: '#grid-pager',
+				altRows: true,
+				multiselect: false,
+				multiboxonly: false,
+				loadonce: true, //设置这个才会分页
+				gridComplete: function (xhr) {
+					var table = this;
+					updatePagerIcons(table);
+				},
+				beforeRequest: function () { //加上这个，不加载数据时即更换pager图标
+					var table = this;
+					updatePagerIcons(table);
+				},
+				caption: "统计数据",
+				autowidth: true
+			});
+			$(window).triggerHandler('resize.jqGrid');
+		});
+	}catch(err){
+		alert(err);
+	}
+}
+
+function exportExcel() { //<%--导出Excel--%>
+	var title = "Excel";  
+	//getXlsFromTbl('grid-table', 'div_list', title, false);
+	var dates = $.trim($("#date").val());
+	//alert(dates);
+	document.getElementById("loading").style.display="block";
+	$.ajax({
+		url: "cgi-bin/floatstatic.cgi?nodeid=1&dateStart="+dates+"&dateEnd="+dates+"&findorget=2&t="+Math.random(),
+		//url: "cgi-bin/floatstatic.cgi?nodeid=41&datetime="+"2017-03-22"+"&starthour="+"00:00"+"&endhour="+"15:25"+"&page="+"1"+"&findorget=2&t="+Math.random(),
+		contentType: "application/x-www-form-urlencoded; charset=utf-8", 
+		dataType:"html",
+		success:function(datas)
+		{
+			//alert(datas);
+			//document.getElementById("ssssss").value = datas;
+			document.getElementById("loading").style.display="none";
+			if(datas != "error")
+			{
+				window.location.href = datas;
+			}else{
+				alert("数据不存在");
+			}
+			
+		},
+		error:function(s, e, obj)
+		{
+			document.getElementById("loading").style.display="none";
+			alert("没有数据");
+		}
+	});
+}
+
+
+</script>
+
+
+</body>
+</html>
+
+

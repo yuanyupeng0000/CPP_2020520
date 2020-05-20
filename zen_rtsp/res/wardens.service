@@ -1,0 +1,12 @@
+[Unit]
+Description= wardens 
+After=networking.service
+
+[Service]
+ExecStart=/bin/bash /home/shanghai/res/wardens-starter
+RestartPreventExitStatus=255
+Type=forking
+
+[Install]
+WantedBy=multi-user.target
+Alias=wardens.service

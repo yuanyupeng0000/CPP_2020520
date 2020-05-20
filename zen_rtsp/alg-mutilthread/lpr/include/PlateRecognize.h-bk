@@ -1,0 +1,16 @@
+//
+// Created by Jack Yu on 21/10/2017.
+//
+
+#ifndef SWIFTPR_PLATERECOGNIZE_H
+#define SWIFTPR_PLATERECOGNIZE_H
+
+#include "PlateInfo.h"
+#include <vector>
+#define PLATE_RECOGNIZE_NET_NUM 8
+int LoadPlateNet(int flag);//加载车牌网络
+int FreePlateNet(int flag);//释放车牌网络
+std::vector<pr::PlateInfo> PlateDetectandRecognize(cv::Mat image, const int segmentation_method, int flag);//车牌识别
+
+
+#endif //SWIFTPR_CNNRECOGNIZER_H

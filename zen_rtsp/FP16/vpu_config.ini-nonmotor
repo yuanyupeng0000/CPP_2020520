@@ -1,0 +1,7 @@
+model_xml=FP16/20191128095323_TinyYoloV3NCS_zhuhai.xml
+model_bin=FP16/20191128095323_TinyYoloV3NCS_zhuhai.bin
+model_dev=HDDL
+thresh=0.3
+nms=0.5
+nireq=40
+

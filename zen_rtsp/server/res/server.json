@@ -1,0 +1,10 @@
+{
+"server_port":12345,
+"client_data_port":12346,
+"alg_hog_file1":"res/hogcascade_pedestrians.xml",
+"alg_c4_file1":"res/combined.txt.model",
+"alg_c4_file2":"res/combined2.txt.model",
+"config_file":"res/config.json",
+"kalman_lost_frame_threhold":5,
+"kalman_trace_len":100
+}

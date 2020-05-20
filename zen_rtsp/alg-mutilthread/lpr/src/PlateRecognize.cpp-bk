@@ -1,0 +1,42 @@
+#include "../include/PlateRecognize.h"
+#include "../include/Pipeline.h"
+using namespace std;
+typedef pr::PipelinePR* pPipelinePR;
+pPipelinePR prc[PLATE_RECOGNIZE_NET_NUM];
+int plate_init_flag[PLATE_RECOGNIZE_NET_NUM] = {0};
+/*pr::PipelinePR prc("model/cascade.xml",
+				   "model/HorizonalFinemapping.prototxt","model/HorizonalFinemapping.caffemodel",
+				   "model/Segmentation.prototxt","model/Segmentation.caffemodel",
+				   "model/CharacterRecognization.prototxt","model/CharacterRecognization.caffemodel",
+				   "model/SegmenationFree-Inception.prototxt","model/SegmenationFree-Inception.caffemodel"
+				   );*/
+int LoadPlateNet(int flag)//加载车牌网络
+{
+	if(plate_init_flag[flag] == 0)//加载网络
+	{
+		prc[flag] = new pr::PipelinePR("model/cascade.xml",
+		"model/HorizonalFinemapping.prototxt","model/HorizonalFinemapping.caffemodel",
+		"model/Segmentation.prototxt","model/Segmentation.caffemodel",
+		"model/CharacterRecognization.prototxt","model/CharacterRecognization.caffemodel",
+		"model/SegmenationFree-Inception.prototxt","model/SegmenationFree-Inception.caffemodel"
+		);
+	}
+	if(plate_init_flag[flag] == 1)
+		return 1;
+	else
+		return 0;
+}
+int FreePlateNet(int flag)//释放车牌网络
+{
+	prc[flag]->~PipelinePR();
+	if(plate_init_flag[flag] == 1)
+	{
+		plate_init_flag[flag] = 0;//将标志设置为0
+	}
+}
+std::vector<pr::PlateInfo> PlateDetectandRecognize(cv::Mat image, const int segmentation_method, int flag)
+{
+	 std::vector<pr::PlateInfo> res = prc[flag]->RunPiplineAsImage(image, segmentation_method);
+	 return res;
+}
+

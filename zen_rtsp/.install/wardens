@@ -1,0 +1,315 @@
+#!/bin/bash
+#
+# warden	This shell script takes care of user application.
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+export LD_LIBRARY_PATH=./lib:./lib/ffmpeg_2_5_3/lib:./lib/va/lib
+ifup p4p1 &
+sleep 10
+iptables -F 
+
+#################################################################
+##############   edit this section in needed    #################
+RM_CMD=1
+BOOT_CMD=2
+
+###监护进程休眠时间(secs)
+SLEEPTIME=25
+#是否开启监护脚本 1开0关(可同时监控多个程序)
+
+SWITCH0=0
+#监控的程序
+PROG0=zenith_cap
+#启动命令
+PROG0_WDIR=/home/zen/zenith_cap
+PROG0_CMD=./zenith_cap
+
+
+SWITCH1=1
+PROG1=zenith
+PROG1_WDIR=/home/zen/
+#PROG1_WDIR=/root/svn/fvd-thread/
+PROG1_CMD=./zenith
+
+SWITCH2=1
+PROG2=ipsearch
+PROG2_WDIR=/home/zen/
+PROG2_CMD=./ipsearch
+
+SWITCH3=0
+PROG3=zenith_video
+PROG3_WDIR=/home/zen/zenith_video
+PROG3_CMD=./zenith_video
+
+SWITCH4=0
+PROG4=zenith_db
+PROG4_WDIR=/home/zen/zenith_savedb
+PROG4_CMD=./localrun.sh
+#################################################################
+#################################################################
+OUTPUT=/dev/null
+SELF=1
+prog=wardens
+
+FormatStr=""
+function Format()
+{
+#前景色:30（黑色）、31（红色）、32（绿色）、 33（黄色）、34（蓝色）、35（洋红）、36（青色）、37（白色）
+#38 在缺省的前景颜色上设置下划线
+#39 在缺省的前景颜色上关闭下划线
+ 
+#背景色: 40、41、42、43、44、45、46、47
+#缺省背景色 49
+#0、1、22、4、24、5、25、7、27， 分别表示：默认值、粗体、非粗体、下划线、非下划线、闪烁、非闪烁、 反显、非反显
+	FormatStr="\033[1;$2;49m$1\033[0m"
+}
+
+function CheckProg()
+{
+	#state=$( ps -ef | grep -v grep | grep "${PROG1}" |wc|awk '{print $1}')
+	state=$( pgrep $3|awk 'END{print NR}' )
+	#echo state:${state}
+	if [ ${state} -eq 0 ]
+	then        
+			echo -e "[ $3\t ]: not running";
+			##########################
+			cd $1
+			nohup $2 >/dev/null 2>&1 &
+			##########################
+		sleep 2
+		state=$( pgrep $3|awk 'END{print NR}' )
+		#echo current:$state
+		if [ ${state} -eq 1 ]
+		then
+				echo -e "[ $3\t]: actived";
+		fi
+	else
+				echo -e "[ $3\t]: alive"            
+	fi
+}
+
+CheckReboot(){
+	if [ ${BOOT_CMD} -eq `date '+%H'` -a "00" -eq `date '+%M'` ]
+	then
+		echo "reboot later..."
+		echo "############dwjia:rebooting..." >> /home/zen/log/main_log/wardens.log
+		sleep 30
+		reboot
+	fi
+}
+CheckRmFile(){
+	if [ `date '+%H'` -eq "00" ]
+	then
+		echo "start rm file"
+		find /picsmb/smb/ -type f -mtime +${RM_CMD} -exec rm -v {} \;
+	else
+		echo "not at 00 clock..."
+	fi
+}
+
+checklog()
+{
+	if [  $((`du    -d 0 /home/zen/log   |  awk '{print $1}'`))  -gt  1000000 ]; then
+		rm -rf /home/zen/log/main_log/*
+		rm -rf /home/zen/log/1_log/*
+		rm -rf /home/zen/log/1_log/*
+		rm -rf /home/zen/log/1_log/*
+		rm -rf /home/zen/log/1_log/*
+		echo "zenith log large than 1G, deleting..."
+	
+	else
+		echo "check  log size ok"
+	fi
+}
+
+GuardProg()
+{
+    while [ 1 ]
+    do
+		if [ ${SWITCH0} -eq 1 ];then
+			if [ ! -w ${PROG0_WDIR} ];then
+				echo "[ $PROG0 ]: PROG0_WDIR set error";
+				exit 1;
+			fi
+			CheckProg ${PROG0_WDIR} ${PROG0_CMD} ${PROG0}
+		fi
+		
+		if [ ${SWITCH1} -eq 1 ];then
+			if [ ! -w ${PROG1_WDIR} ];then
+				echo "[ $PROG1 ]: PROG1_WDIR set error";
+				exit 1;
+			fi
+			CheckProg ${PROG1_WDIR} ${PROG1_CMD} ${PROG1}
+		fi
+		
+		if [ ${SWITCH2} -eq 1 ];then
+			if [ ! -w ${PROG2_WDIR} ];then
+				echo "[ $PROG2 ]: PROG2_WDIR set error";
+				exit 1;
+			fi
+			CheckProg ${PROG2_WDIR} ${PROG2_CMD} ${PROG2}
+		fi
+		if [ ${SWITCH3} -eq 1 ];then
+                        if [ ! -w ${PROG3_WDIR} ];then
+                                echo "[ $PROG3 ]: PROG3_WDIR set error";
+                                exit 1;
+                        fi
+                        CheckProg ${PROG3_WDIR} ${PROG3_CMD} ${PROG3}
+                fi
+		if [ ${SWITCH4} -eq 1 ];then
+                        if [ ! -w ${PROG4_WDIR} ];then
+                                echo "[ $PROG4 ]: PROG2_WDIR set error";
+                                exit 1;
+                        fi
+                        CheckProg ${PROG4_WDIR} ${PROG4_CMD} ${PROG4}
+                fi		
+		echo "sleepping " >>/tmp/wardens_log
+	 	date >>/tmp/wardens_log
+		
+        sleep ${SLEEPTIME};
+		CheckReboot
+		checklog
+		if [ ${RM_CMD} -ne 0 ];then
+			CheckRmFile
+		fi
+    done
+}
+
+
+        
+
+checkself()
+{
+	#ps -ef | grep -v "grep" | grep "self" | wc |awk '{print $1}'|read count;    
+	ret=$( pgrep $prog|awk 'END{print NR}' )
+	#echo $ret
+	if [ ${ret} -gt 2 ]
+    	then
+		action $"Starting $prog: ""		exist (已存在) " /bin/false
+		exit
+	fi
+}
+
+killprog()
+{
+	
+	ret=`pgrep $1`
+	if [ -z $ret ]
+	then
+		action $"Stopping $$1: 程序没有启动" /bin/false
+	else	
+		kill -9 $ret >/dev/null 2>&1
+		sleep 1
+		/bin/kill -0 ${ret} >/dev/null 2>&1 || ret=0
+		if [ $ret -eq 0 ];then
+			action $"Stopping $1: " /bin/true
+		else
+			action $"Stopping $1: 停止进程($ret)失败" /bin/false
+		fi
+	fi		
+}
+
+status()
+{
+	ret=$( ps -ef | grep $prog | grep -v "grep" | grep start |awk 'END{print $2}' )
+	Format ${prog} 31
+	if [ -z ${ret} ]
+    then
+		echo -e "[ ${FormatStr}\t]:		not run (没有启动)"
+	else
+		echo -e "[ ${FormatStr}\t]:		running  (pid:$ret)"
+	fi
+	for j in $(seq 0 4)
+	do
+		swithtmp=SWITCH$j
+		if [ ${!swithtmp} -eq 1 ];then
+			progtmp=PROG$j
+			ret=`pgrep ${!progtmp}`
+			Format ${!progtmp} 31
+			if [ -z $ret ];then
+				echo -e "[ ${FormatStr}\t]:		not run (没有启动)"
+			else
+				echo -e "[ ${FormatStr}\t]:		running  (pid:$ret)"
+			fi
+		fi
+	done
+	
+}
+
+start()
+{
+	Date=` date +'%Y-%m-%d,%H:%M:%S' `;
+       echo "当前时间：$Date"
+	echo "启动时间：$Date"	>>$OUTPUT
+	action $"Starting $prog: " /bin/true
+	GuardProg
+}
+
+killProgram()
+{
+	for j in $(seq 0 4)
+	do
+		
+		swithtmp=SWITCH$j
+		if [ ${!swithtmp} -eq 1 ];then
+			progtmp=PROG$j
+			ret=`pgrep ${!progtmp}`
+			Format ${!progtmp} 31
+			if [ -z $ret ];then
+				echo -e "[ ${FormatStr} ]:		not start (没有启动)"
+			else
+				echo -en "killing [ ${FormatStr} ] (Y/n)?"
+				read -n1 CC
+					  echo ""
+					  if [[ $CC != n && $CC != N ]] ;then
+							killprog ${!progtmp}
+					  fi
+					  unset -v CC
+			fi
+		fi
+	done
+}
+
+stop()
+{
+	#ps -ef | grep $prog | grep -v "grep" | grep start
+	ret=$( ps -ef | grep $prog | grep -v "grep" | grep start |awk 'END{print $2}' )
+	if [ -z ${ret} ]
+    then
+		action $"Stopping $prog: ""		not start (没有启动)" /bin/false
+	else
+		kill -9 $ret >/dev/null 2>&1
+		sleep 2
+		/bin/kill -0 ${ret} >/dev/null 2>&1 || ret=0
+		if [ $ret -eq 0 ];then
+			action $"Stopping $prog: "            /bin/true
+		else
+			action $"Stopping $prog: 停止进程($ret)失败" /bin/false
+		fi
+	fi
+	
+	killProgram;
+}
+
+case "$1" in
+  start)
+    checkself
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  kill)
+    killProgram;
+    ;;
+  status)
+    status
+    ;;
+  *)
+	Format "Usage:{ start | stop | status | kill } " 39
+    echo -e $FormatStr
+    exit 2
+esac
+
+exit $?

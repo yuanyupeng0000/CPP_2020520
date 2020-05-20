@@ -1,0 +1,614 @@
+#ifndef __ALGORITHM_H__
+#define __ALGORITHM_H__
+#include "stdio.h"
+#include "stdlib.h" 
+#include <string.h>
+#include "math.h"
+#include <sys/time.h>
+#include "DSPARMProto.h"
+//#include "opencv2/core.hpp"
+#ifdef DETECT_GPU
+#include "yolo_detector.h"
+#endif
+#include <opencv2/opencv.hpp>
+using namespace cv;
+//BY DAVID 20130322 FOR xDM
+//#define		TRUE	1
+//#define  	FALSE	0
+/*
+#ifdef WX_IVD_EXPORTS
+#define CIVD_SDK_API extern "C" __declspec(dllexport)
+#else
+#define CIVD_SDK_API extern "C" __declspec(dllimport)
+#endif
+*/
+
+#define CIVD_SDK_API
+
+typedef  unsigned int 	Uint32;
+typedef  int 			Int32;
+typedef  unsigned short Uint16;
+typedef  short 			Int16;
+//typedef  unsigned short bool;
+typedef  unsigned char	Uint8;
+extern int frame;
+//typedef  signed char	Int8;
+
+//#define DETECTRECT_WIDTH_MAX		720//500
+#define DETECTRECT_WIDTH_MAX		704//500
+#define DETECTRECT_HEIGHT_MAX		576//240
+#define	MAX_IMAGE_WIDTH     	2000
+#define MAX_IMAGE_HEIGHT        2000
+
+#define DETECTRECT_WIDTH_DEFAULT	160
+#define DETECTRECT_HEIGHT_DEFAULT	40
+#define LANE_AMOUNT_DEFAULT			3
+#define DETECT_WIDTH			200
+#define DETECT_HEIGHT			120
+#define DETECT_ALGORITHM			3
+
+#ifndef __UPLOAD_DETECT__
+#define __UPLOAD_DETECT__
+
+#define TRUE 1
+#define FALSE 0
+#define	VISIB_LENGTH		10//txl,20160105
+#define MAX_CLASSES 80//最大类别数
+#define MAX_TARGET_NUM 200
+#define FRAME_FPS  10
+#define MAX_LANE_TARGET_NUM 50
+#define MAX_PERSON_NUM 100//行人最大数
+#define MAX_BICYCLE_NUM 100//单车最大数
+#define MAX_ROAD_TARGET_NUM 50
+
+#ifdef DETECT_PLATE
+#define MAX_PLATE_NUM 20
+#endif
+
+typedef struct{
+	Uint16 uEventID;//事件ID
+	Uint32 begin_time;//事件开始时间
+	Uint32 end_time;//时间结束时间
+	Uint16 flag;//事件结束标志
+	EventType type;//事件类型
+}EVENTINFO;
+
+typedef struct {
+	CRect box;//行人属性框
+	int age;//年龄
+	int sex;//性别
+	int uppercolor;//上衣颜色
+	int lowercolor;//下衣颜色
+	int shape;//体型
+	int head;//头顶
+	int glasses;//眼镜
+	int upstyle;//上衣类型
+	int lowerstyle;//下衣类型
+	int face;//面向
+	int height;//身高 单位cm
+	int speed;//速度 单位km/h
+	int direction;//行驶方向 0 下行 1 上行
+	int isCycling;//是否骑行 0 否  1 是
+	int flag;//新检测的属性，1为新检测属性，0为跟踪属性
+}HumanAttribute;//行人属性
+typedef struct {
+	CRect box;//单车属性框
+	char brand[50];//品牌
+	int colour;//颜色
+	bool isCycling; //是否骑行 1表示骑行，0表示非骑行
+	int flag;//新检测的属性，1为新检测属性，0为跟踪属性
+}BicycleAttribute;//单车属性
+typedef struct{
+	Uint16 uBoxID;//ID
+	HumanAttribute AttributeInfo;//属性信息
+	bool detected;//是否检测
+	int lost_detected;//多少帧没有检测到
+	float ReportTime;//上报时间
+}HumanAttributeBox;
+typedef struct{
+	Uint16 uBoxID;
+	BicycleAttribute AttributeInfo;
+	bool detected;
+	int lost_detected;//多少帧没有检测到
+	float ReportTime;//上报时间
+}BicycleAttributeBox;
+
+typedef struct LaneInitial 
+{
+	Uint16 		uTransFactor;
+	Uint32		uGraySubThreshold;
+	Uint32 		uSpeedCounterChangedThreshold;
+	Uint32 		uSpeedCounterChangedThreshold1;
+	Uint32 		uSpeedCounterChangedThreshold2;
+
+
+	Uint16		uDayNightJudgeMinContiuFrame;//持续帧数
+	Uint16		uComprehensiveSens;//综合灵敏度
+	Uint16		uDetectSens1;//检测灵敏度1
+	Uint16		uDetectSens2;
+	Uint16		uStatisticsSens1;
+	Uint16 		uStatisticsSens2;	//by david 20130910 from tagCfgs
+	Uint16		uSobelThreshold;//sobel锟斤拷值
+	Uint16		uEnvironmentStatus;//时间，黄昏、晚上、黎明、白天1,2,3,4
+	Uint16      uEnvironment;           //时间 白天和晚上 执行算法类别
+    float       base_length;//垂直基准线长度
+	float       horizon_base_length;//水平基准线长度
+	float       near_point_length;//近距点距离
+	float       cam2stop;//相机到停止线的距离
+}LANEINISTRUCT;//702
+
+typedef struct tagOutBuf
+{
+	RegionAttribute CoilAttribute[MAX_LANE][2];//前后线圈：0为前线圈 1为后线圈
+	unsigned int thresholdValue;
+	unsigned int frame;
+	unsigned int AlarmLineflag[MAX_LANE][5];
+	CPoint LineUp[MAX_LANE][2];
+	bool IsCarInTail[MAX_LANE];//尾部占有状态
+	//unsigned int LineUp[MAX_LANE][2];
+	Uint16 uLastVehicleLength[MAX_LANE];//最后一辆车的位置
+	bool   fuzzyflag;//视频异常状态
+	bool   visibility;//能见度状态
+    Uint16 uActualDetectLength[MAX_LANE];
+    Uint16 uActualTailLength[MAX_LANE];
+    Uint16 uDegreePoint[20][2];//垂直刻度线
+	Uint16 uHorizontalDegreePoint[10][2];//水平刻度线
+	Uint16 uEnvironmentStatus;
+	bool   getQueback_flag[MAX_LANE];//txl,20160104
+	Uint16 DetectRegionVehiSum[MAX_LANE];//new  区域车辆数
+	CPoint QueLine[MAX_LANE][2];//new   排队长度线点
+	Uint16 uVehicleQueueLength[MAX_LANE];//车排队长度
+	OBJECTINFO udetBox[300];
+	//CRect  udetBox[100];
+	Uint16 udetNum;//检测框
+	OBJECTINFO  udetPersonBox[200];
+	Uint16 udetPersonNum;//行人检测框
+	Uint16 udetStatPersonNum;//统计行人检测框
+	Uint16 uPersonRegionNum[MAX_REGION_NUM];//区域行人数
+	Uint16 uPersonDirNum[MAX_REGION_NUM][MAX_DIRECTION_NUM];//分方向行人数
+	car_objects car_number[MAX_DETECTION_NUM];//车牌检测框
+	Uint16 udetPlateNum;//车牌检测框数
+	Uint16 uQueueHeadDis[MAX_LANE];//队首到停车线的距离，单位：m
+	Uint16 uQueueTailDis[MAX_LANE];//队尾到停车线的距离，单位：m
+	Uint16 uQueueVehiSum[MAX_LANE];//通道排队数量，单位：辆
+	Uint16 uVehicleDensity[MAX_LANE];//空间占有率，单位：百分比
+	Uint16 uVehicleDistribution[MAX_LANE];//车辆分布情况，单位：m
+	Uint16 uHeadVehiclePos[MAX_LANE];//头车位置，单位：m
+	Uint16 uHeadVehicleSpeed[MAX_LANE];//头车速度，单位：km/h
+	Uint16 uLastVehiclePos[MAX_LANE];//末车位置，单位：m
+	Uint16 uLastVehicleSpeed[MAX_LANE];//末车速度，单位：km/h
+	Uint16 uAverVehicleSpeed[MAX_LANE];//平均速度，单位：km/h
+	Uint32 uBicycleFlow[MAX_LANE];//自行车流量
+	Uint32 uBusFlow[MAX_LANE];//公交车流量
+	Uint32 uCarFlow[MAX_LANE];//小车流量
+	Uint32 uTruckFlow[MAX_LANE];//货车流量
+	Uint32 uMotorbikeFlow[MAX_LANE];//摩托车流量
+	Uint32 nVehicleFlow[MAX_LANE]; //非机动车流量
+	EVENTOUTBUF eventData;//事件输出
+	NPOUTBUF NPData;//非机动车乘员信息输出
+}OUTBUF;
+#endif
+               	            				                
+//#ifndef __ALG_CPOINT__
+//#define __ALG_CPOINT__
+//typedef struct 
+//{
+//	Uint16 x;
+//	Uint16 y;
+//}CPoint; 
+//#endif
+////20140102
+#ifndef __ALG_CRECT__
+#define __ALG_CRECT__   
+
+/*typedef struct RECT_Obj
+{
+//	struct RECT_Fxns *rectfxns;
+	  
+    Int16    left;
+    Int16    top;
+    Int16    right;
+    Int16    bottom;
+} CRect;*/
+/*
+typedef struct RECT_FXNS
+{
+	void (*Init)(CRect handle);
+	void (*Free)(CRect handle);
+	int (*Width)(CRect handle);
+	int (*Height)(CRect handle);
+}RECT_Fxns;
+*/
+#endif
+                                 
+typedef struct{
+	CRect box;//框位置	
+	float prob;//置信度
+	int class_id;//类别ID
+	char names[50];//类别名
+	bool detected;//当前帧是否检测
+	int  lost_detected;//多少帧没有检测到
+	int target_id;//目标ID
+	CRect trajectory[3000];//目标运动轨迹
+	int trajectory_num;//轨迹数量
+	float trajectory_time[3000];//运动轨迹时间, 用于计算实时速度
+	int vx;//速度
+	int vy;
+	int continue_num;//目标持续帧数
+	float start_time;//目标开始时间，单位s
+	float end_time;//目标结束时间，单位s
+	bool pass_detect_line;//目标开始是否经过检测线
+	int   lane_id;//目标所在车道ID,用在FVD
+	bool  cal_speed;//是否计算了速度
+	bool  cal_flow;//是否进行了流量统计
+	int   cal_lane_id;//目标在哪个车道计算了流量
+	int region_idx;//用于计算行人目标属于哪个区域
+	int   direction;//目标运动方向
+	int event_continue_num[MAX_EVENT_TYPE];//事件持续的帧数
+	int event_flag[MAX_EVENT_TYPE];//事件是否标记
+	bool cal_event[MAX_EVENT_TYPE];//是否认为是事件
+	int  sign_event[MAX_EVENT_TYPE];//用于标记新产生的事件
+	bool attribute_detected;//是否检测了行人属性
+	int statistic[5];//用于统计运动情况
+	int radar_speed;//是否得到雷达的速度
+}CTarget;
+
+typedef struct{
+	int class_id;//类别
+	float prob[MAX_DETECTION_NUM];//置信度
+	CRect box[MAX_DETECTION_NUM];//框位置
+	char names[50];//类别名
+	int classes_num;//类别数
+	int lane_id[MAX_DETECTION_NUM];//框所在的车道
+}CDetBox;
+
+typedef struct{
+	float k;
+	float b;//检测线的斜率和截距
+	int line_vertical;//是否是垂直线
+	CPoint pt[2];//检测线端点
+	int detLeft;//根据检测线计算出来的跟踪区域
+	int detRight;
+	int detTop;
+	int detBottom;
+}LineParam;
+
+typedef struct tagDETECTREGION{
+	Uint16 uRegionID;//区域编号
+	CPoint detRegion[4];//检测区域四个点
+	EventType eventType;//区域类型
+	Uint16 direction;//区域方向
+	Uint16 ReportInterval;//事件上报最小间隔时间，单位：分钟
+}DETECTREGION;//检测区域
+
+typedef struct tagEVENTDETECTCFG{
+	Uint16 uEventRegionNum;//事件区域数
+	DETECTREGION  EventRegion[MAX_EVENT_REGION_NUM];//检测区域
+	Uint16 ReportInterval[MAX_EVENT_TYPE];//事件上报最小间隔时间，单位：分钟
+}EVENTDETECTCFG;
+
+typedef struct tagCfgs
+{
+	RESULTMSG				ResultMsg;			
+	ZENITH_SPEEDDETECTOR	DownDetectCfg;		
+	EVENTDETECTCFG          EventDetectCfg;//事件检测配置 
+	Uint16 LaneAmount;//车道数
+	CRect  detectROI;//检测区域
+#ifdef DETECT_GPU
+	NET_PARAMS* net_params;
+#endif 
+	char** names;
+	Uint16 classes;//检测类别数
+	CTarget targets[MAX_TARGET_NUM];//目标
+	CDetBox detClasses[MAX_CLASSES];//检测类别
+	Uint16 target_id;
+	Uint16 targets_size;
+	CTarget detTargets[MAX_TARGET_NUM];//用于车道内车辆数量统计
+	Uint16 detTarget_id;
+	Uint16 detTargets_size;
+	Uint16 currFore_target_id[MAX_LANE];
+	Uint16 headtime[MAX_LANE];//用于计算车头时距
+	double jgtime[MAX_LANE][2];
+	Uint16 Headposition[MAX_LANE];
+	Uint16 Tailposition[MAX_LANE];
+	CRect detBoxes[MAX_LANE][MAX_LANE_TARGET_NUM];
+	Uint16 detNum[MAX_LANE];
+	Uint16 uStatPersonNum[4];//统计行人数，采用四帧平均值
+	Uint16 uDetectRegionNum;//行人检测区域数
+	Uint16 uRegionPersonNum[MAX_REGION_NUM];//每个区域的行人数
+	LineParam detLineParm[MAX_REGION_NUM];//行人检测线参数
+	CTarget objPerson[MAX_TARGET_NUM];//行人目标，用于统计检测线的行人方向数
+	Uint16 person_id;//行人目标ID
+	Uint16 objPerson_size;//行人目标数
+	Uint16 uPersonDirNum[MAX_REGION_NUM][MAX_DIRECTION_NUM];//行人方向数
+	bool bDetPersonFlow;//是否检测行人方向流量
+	struct timeval time_start;//帧开始时间
+	struct timeval time_end;//帧结束时间
+	double currTime;//用于计算车辆速度
+	Uint16	m_iWidth, m_iHeight;
+	Uint16	img_width;
+	Uint16  img_height;
+	bool    IsCarInTail[MAX_LANE];//txl,1126
+
+	bool    bNight;
+	Uint16  bAuto;
+
+	Uint32 	gThisFrameTime;
+	Uint32  abnormal_time;
+
+	float 	gdAverGrey;
+	float 	gdWrap;
+	float	gdSum;
+
+	//added by david 20130422
+	Uint32	uDetectInSum[MAX_LANE];		//进入流量线圈的车流量
+	Uint32	uDetectOutSum[MAX_LANE];	//出流量线圈的车流量
+	Uint32  uDetectVehicleSum[MAX_LANE];//车道内的车辆总数
+	Uint16  uStatVehicleSum[MAX_LANE][4];//用于统计车道内的车辆数
+	Uint32  uDetectVehicleFrameNum[MAX_LANE];//用于记录车道内相同车辆数的帧数
+	Uint16  uStatQuePos[MAX_LANE][6];//用于统计排队长度
+	Uint16  uVehicleQueueLength[MAX_LANE];
+	CPoint  m_ptend[MAX_LANE][12];
+	float mapping_matrix[9];
+	//图像标定
+	float scale_x;//标定时，x方向缩放的比例，防止图像分辨率大，导致内存太大
+	float scale_y;//y方向缩放比例
+	float image_actual[MAX_IMAGE_HEIGHT][MAX_IMAGE_WIDTH][2];
+	float actual_point[CALIBRATION_POINT_NUM][2];
+	float image_point[CALIBRATION_POINT_NUM][2];
+	int calibration_point[4][2];//标定点
+	int base_line[4][2];//基准线端点
+	float base_length[2];//基准线长
+	float near_point_length;//近距点距离
+    float cam2stop;//相机到停止线的距离
+	float actual_distance[MAX_LANE][MAX_IMAGE_HEIGHT];//图像到实际的映射
+	Uint16 uActualDetectLength[MAX_LANE];//实际流量线圈长度
+	Uint16 uActualTailLength[MAX_LANE];//实际尾部占有线圈长度
+	//float actual_degree_length[MAX_IMAGE_HEIGHT];//刻度线上的实际映射
+    Uint16 degreepointY[20][2];//y刻度点
+    int degreepointX[10][2];//x刻度点
+	int actual_image[2000][2000][2];//实际坐标到图像坐标的映射
+	float mapping_ratio[2];//实际坐标到图像坐标的映射采用的比例
+	float actual_origin[2];//实际坐标x y方向的最小值
+	Uint16 fuzzydegree;//624xyx
+	bool fuzzyflag;
+	bool visibility;//能见度状态
+    int up_visib_value;//txl,20160105
+	Uint16 visib_value[VISIB_LENGTH];//txl,20160105
+
+	int NCS_ID;//NCS ID
+
+	//用于计算后线圈变量
+    Uint16 currRear_target_id[MAX_LANE];//后线圈当前ID
+	bool bRearCalSpeed[MAX_LANE];//后线圈当前ID是否计算速度
+	Uint16 uRearIntervalNum[MAX_LANE];//后线圈两目标之间间隔
+	Uint16 existFrameNum[MAX_LANE][2];//车辆在线圈存在的帧数
+
+	bool bMaskLaneImage;//车道掩模图像
+	bool bMaskDetectImage;//行人检测区域掩模图像
+	bool bMaskEventImage;//交通事件区域掩模图像
+	bool bCalibrationImage;//是否进行了图像标定
+
+	//交通事件检测信息
+	CTarget event_targets[MAX_TARGET_NUM];//事件目标框信息
+	Uint16 event_target_id;//事件目标ID
+	Uint16 event_targets_size;//事件目标数
+	Uint32 eventID;//交通事件ID
+
+	//道路事件检测信息
+	CTarget road_event_targets[MAX_ROAD_TARGET_NUM];//事件目标框信息
+	Uint16 road_event_target_id;//事件目标ID
+	Uint16 road_event_targets_size;//事件目标数
+
+	Uint16 uIllegalParkNum;//停车数
+	EVENTBOX IllegalParkBox[MAX_EVENT_NUM];//违法停车
+	double uIllegalParkTime;//前一停车事件时间
+	Uint16 uIllegalParkID;//前一停车事件的ID
+
+	Uint16 uOppositeDirDriveNum;//逆行数
+	EVENTBOX OppositeDirDriveBox[MAX_EVENT_NUM];//逆行
+	Uint16 direction[MAX_EVENT_REGION_NUM];//区域运行方向
+	double uOppositeDirDriveTime;//前一逆行事件时间
+	Uint16 uOppositeDirDriveID;//前一逆行事件的ID
+
+	bool  bDetCongestion;//是否检测拥堵
+	bool  bCongestion[MAX_LANE];//交通拥堵
+	bool  bStatCongestion[MAX_LANE][150];//统计交通拥堵
+	Uint16 uStatCongestionNum[MAX_LANE];
+	Uint16 uCongestionNum; //交通拥堵数
+	EVENTBOX CongestionBox[MAX_LANE];//拥堵线;
+	double uStatFrameTime[150];//记录150帧的时间，单位s
+	double uCongestionThreshTime;//拥堵时间阈值,单位s
+	double uCongestionTime[MAX_LANE];//前一拥堵事件时间
+
+	Uint16 uOffLaneNum;//偏离车道数
+	EVENTBOX OffLaneBox[MAX_EVENT_NUM];//偏离车道
+	double uOffLaneTime;//前一偏离车道时间
+	Uint16 uOffLaneID;//前一偏离车道的ID
+
+	Uint16 uNoPersonAllowNum;//禁止行人数
+	EVENTBOX NoPersonAllowBox[MAX_EVENT_NUM];//违法行人
+	double uPersonEventTime;//前一行人事件时间
+	Uint16 uCurrentPersonID;//前一行人事件的ID
+
+	Uint16 uNonMotorAllowNum;//禁止非机动车数
+	EVENTBOX NonMotorAllowBox[MAX_EVENT_NUM];//违法非机动车
+	double uNonMotorEventTime;//前一非机动车事件时间
+	Uint16 uCurrentNonMotorID;//前一非机动车事件的ID
+
+	Uint16 uDropNum;//抛弃物数
+	EVENTBOX DropBox[MAX_EVENT_NUM];//抛弃物
+
+	Uint16 uPersonFallNum;//行人跌倒数
+	EVENTBOX PersonFallBox[MAX_EVENT_NUM];//行人跌倒
+	double uPersonFallEventTime;//前一行人跌倒事件时间
+	Uint16 uCurrentPersonFallID;//前一行人跌倒事件的ID
+
+	Uint16 uNonMotorFallNum;//非机动车跌倒数
+	EVENTBOX NonMotorFallBox[MAX_EVENT_NUM];//非机动车跌倒
+	double uNonMotorFallEventTime;//前一非机动车跌倒事件时间
+	Uint16 uCurrentNonMotorFallID;//前一非机动车跌倒事件的ID
+
+	Uint16 uGreenwayDropNum;//绿道抛弃物数
+	EVENTBOX GreenwayDropBox[MAX_EVENT_NUM];//绿道抛弃物
+	double uGreenwayDropEventTime;//前一绿道抛弃物事件时间
+	Uint16 uCurrentGreenwayDropID;//前一绿道抛弃物事件的ID
+
+	Uint16 uTrafficAccidentNum;//交通事故数
+	EVENTBOX TrafficAccidentBox[MAX_EVENT_NUM];//交通事故
+	double uTrafficAccidentTime;//前一交通事故发生时间
+	Uint16 uTrafficAccidentID;//前一交通事故的ID
+
+	CRect CurrCandidateROI[50];//用于抛弃物检测
+	Uint16 CurrCandidateROINum;//当前候选区域数
+	CTarget abandoned_targets[10];//抛弃物跟踪框
+	Uint16 abandoned_targets_id;//抛弃物ID
+	Uint16 abandoned_targets_size;//抛弃物数量
+
+	Uint16 uRoadWaterNum;//道路积水数
+	EVENTBOX RoadWaterBox[MAX_EVENT_NUM];//道路积水事件
+	double uRoadWaterTime;//前一道路积水事件时间
+	Uint16 uRoadWaterID;//前一道路积水事件的ID
+
+	Uint16 uRoadHollowNum;//道路坑洼数
+	EVENTBOX RoadHollowBox[MAX_EVENT_NUM];//道路坑洼事件
+	double uRoadHollowTime;//前一道路坑洼事件时间
+	Uint16 uRoadHollowID;//前一道路坑洼事件的ID
+
+	Uint16 uRoadDamageNum;//道路破损数
+	EVENTBOX RoadDamageBox[MAX_EVENT_NUM];//道路破损事件
+	double uRoadDamageTime;//前一道路破损事件时间
+	Uint16 uRoadDamageID;//前一道路破损事件的ID
+
+	Uint16 uRoadCrackNum;//道路裂缝数
+	EVENTBOX RoadCrackBox[MAX_EVENT_NUM];//道路裂缝事件
+	double uRoadCrackTime;//前一道路裂缝事件时间
+	Uint16 uRoadCrackID;//前一道路裂缝事件的ID
+
+	EVENTINFO EventInfo[MAX_EVENT_NUM];//事件信息
+	Uint16 EventNum;//事件数量
+	bool HaveEvent;//有事件发生
+	Uint16 EventState;//事件状态 0: no 1: in 2:out
+	EventType eventType;//事件类型
+	Uint32 EventBeginTime;//事件开始时间
+	Uint32 EventEndTime;//事件结束时间
+	Uint16 first_update;//第一次更新背景
+	Uint16 video_fps;//视频帧率
+	HumanAttributeBox PersonAttributeBox[MAX_PERSON_NUM];//行人属性
+	Uint16 uPersonNum;//行人数
+	BicycleAttributeBox BikeAttributeBox[MAX_BICYCLE_NUM];//单车属性
+	Uint16 uBicycleNum;//单车数
+#ifdef DETECT_PLATE//车牌识别
+	int plate_flag;//车牌识别网络ID
+#endif
+	
+}ALGCFGS;
+
+typedef struct tagParams
+{
+	Uint8	*CurrQueueImage;  //车道区域内图像
+	Uint8	*PreQueueImage;//前一帧图像
+	Uint8   *PrePreQueueImage;//前两帧图像
+	Uint8   *PrePrePreQueueImage;//前三帧图像
+	Uint8   *PreFullImage;//前一帧全景图像，用于车牌识别
+	Uint8   *PrePreFullImage;//前两帧全景图像，用于车牌识别
+	Uint8   *CurrBackImage;//全图背景图像
+	Uint8   *BufferBackImage;//全图背景图像
+	Uint8   *ForeImage;//全图前景图像
+	Uint8   *MaskLaneImage;//用于代表不同的车道
+	Uint8   *MaskDetectImage;//行人检测区域图像
+	Uint32  *MaskEventImage;//代表事件区域 1：超速 2： 逆行 3：停车  4：行人 5：驶离  6：拥堵 7：抛洒物 8：烟雾 9：起火 10：行人跌倒 11：行人聚集 12：自行车倒地 13：绿道抛弃物 20：禁行非机动车 21：车辆追尾事故
+	Uint8   *MaskIllegalParkImage;//非法停车
+	Uint8   *MaskOppositeDirDriveImage;//逆行
+	Uint8   *MaskOffLineImage;//偏离车道
+	Uint8   *MaskNoPersonAllowImage;//违法行人
+	Uint8   *MaskNonMotorAllowImage;//违法机动车
+	Uint8   *MaskPersonFallImage;//行人跌倒检测区域
+	Uint8   *MaskDropImage ;//抛弃物检测区域
+	Uint8   *MaskTrafficAccidentImage;//交通事故检测区域
+	Uint8   *MaskEventIDImage;//代表事件区域ID
+}ALGPARAMS;
+
+////////////////////////////////////////////////////////////common function
+char** get_labels(char* filename, Uint16& classes_num);//获得检测类别名
+bool pointInPolygon(int polySides, float  polyX[], float  polyY[], float  x, float y);//判断一点是否在多边形内
+void CorrectRegionPoint(CPoint* ptCorner);//矫正四坐标点
+bool isPointInRect(CPoint pt, CPoint mLBPoint, CPoint mLTPoint, CPoint mRTPoint, CPoint mRBPoint);//判断一个点是否在四边形里
+bool isLineIntersectRect(CPoint pt1, CPoint pt2, CRect rct);//判断一个线段是否与矩形框相交
+int RectInRegion(unsigned char* maskImage, ALGCFGS *pCfgs, int width, int height, CRect rct, int idx);//得到检测框是否在检测区域
+int SetLine(ALGCFGS* pCfgs, CPoint ptDetLine[][2]);//设置检测线
+void get_object_num(ALGCFGS* pCfgs, int target_idx, int region_idx);//分方向得到检测线处的行人数
+int overlapRatio(const CRect r1,const CRect r2);//计算两框交并比
+CTarget* find_nearest_rect(	CRect detectBox, int class_id, CTarget* targets, int targets_size);//检测框匹配目标
+int match_object_rect(CTarget* targets, int targets_size, CDetBox* detClasses, int class_id, int* match_object, int* match_rect, int thresh);//检测框和目标进行匹配
+int match_object_rect1(ALGCFGS* pCfgs, CTarget* targets, int targets_size, int match_object[][MAX_DETECTION_NUM], int match_rect[][3], int thresh);//检测框和目标进行匹配
+int merge_overlapped_box(CRect detRect, int class_id, float prob, ALGCFGS* pCfgs, Uint16 ratio_threshold);//合并检测框
+void post_process_box_same(ALGCFGS* pCfgs, Uint16 ratio_threshold);//对相同类别检测框进行处理
+void post_process_box(ALGCFGS* pCfgs,  Uint16 ratio_threshold);//对检测框进行后处理
+bool Initialize_target(CTarget* target);//初始化目标
+void DeleteTarget(Uint16* size, int* startIdx, CTarget* target);//删除目标
+int analysis_trajectory(CTarget* target);//分析目标轨迹
+void get_speed(CTarget* target);//得到目标速度
+void SobelCalculate(unsigned char *puPointNewImage, unsigned char *puPointSobelImage, int threshold, int width, int height);//计算sobel边缘
+void AvgFilter(unsigned char *img, unsigned char *dst_img, int width, int height);//均值滤波
+void DarkChannel(unsigned char *img, unsigned char *dark_img, int width, int height, int r);//计算暗通道图像
+int Threshold(unsigned char* img, unsigned char* dst_img, int width, int height, int thr, int l1, int l2);//二值化
+///////////////////////////////////////////////////////////////////////////
+#define POINTSIZE 16
+typedef struct args{
+	ALGCFGS *pCfgs;
+	ALGPARAMS *pParams;
+	OUTBUF *p_outbuf;
+	SPEEDCFGSEG    pDetectCfgSeg;
+	CFGINFOHEADER  pCfgHeader;
+
+	CPoint m_ptEnd[MAX_LANE * POINTSIZE];
+    CPoint ptimage[8];
+
+}m_args;
+
+int alg_mem_malloc(m_args *arg_arg);//分配内存
+int alg_mem_free(m_args *arg_arg);//释放内存
+bool transform_init_DSP_VC(bool iniflag, Uint16 lanecount,
+		LANEINISTRUCT LaneIn,RESULTMSG *p_outbuf,m_args *p_arg, int gpu_index);
+CIVD_SDK_API unsigned int transform_Proc_DSP_VC(int index, unsigned char *pInFrameBuf,
+		unsigned char *pInuBuf,unsigned char *pInvBuf,\
+		int nWidth, int nHeight, int hWrite, mRadarRTObj* objRadar, int objRadarNum, RESULTMSG *p_outbuf,m_args *p_arg);
+CIVD_SDK_API unsigned int NP_Proc_DSP_VC(int index, Mat img, m_args *p_arg);
+int transform_arg_ctrl_DSP_VC(m_args *);
+int transform_release_DSP_VC(m_args *);
+extern unsigned int transform_Proc_0_DSP_VC(unsigned int* count,float* speed,float* length);
+bool ArithInit(Uint16 ChNum, CFGINFOHEADER *pCfgHeader, SPEEDCFGSEG *pDetectCfgSeg, ALGCFGS *pCfgs, ALGPARAMS *pParams, int gpu_index);//初始化参数
+extern Uint16 ArithProc(Uint16 ChNum, unsigned char  *pInFrameBuf, unsigned char *pInuBuf, unsigned char *pInvBuf, int FrameWidth, int FrameHeight,\
+						RESULTMSG* outBuf, Int32 outSize, ALGCFGS *pCfgs, ALGPARAMS *pParams, mRadarRTObj* objRadar, int objRadarNum);//算法执行
+static bool CfgStructParse(Uint16 ChNum, CFGINFOHEADER *pCfgHeader, SPEEDCFGSEG *pDetectCfgSeg, ALGCFGS *pCfgs, ALGPARAMS *pParams);//配置参数
+void ProcessDetectBox(ALGCFGS* pCfgs, int* result, int nboxes);//对检测框进行处理
+static void QueLengthCaculate(Uint16 LaneID, ALGCFGS *pCfgs, ALGPARAMS	*pParams, CPoint m_ptend[], int width, int height, bool detRear);//计算排队长度
+static void iSubStractImage(Uint8 *puSourceImage,Uint8 *puTargetImage, Uint8 *puMaskImage, Uint32 nThreshold, Int16 laneID, Int16 width, Int16 height);//帧差
+//void camera_calibration(float actual_point[][2],float img_point[][2],float mapping_matrix[],int calibration_num,ALGCFGS *pCfgs);
+//static void img_to_actual(float mapping_matrix[],int start_row,int end_row,int overlap_row1,int overlap_row2,int flag,ALGCFGS *pCfgs);
+void camera_calibration(int base_line[][2], float* base_length, int calibration_point[][2], float near_point_length, int laneNum, ALGCFGS *pCfgs, int imgW, int imgH);//标定图像
+void camera_calibration_transform(int base_line[][2], float* base_length, int calibration_point[][2], float near_point_length, ALGCFGS *pCfgs, int imgW, int imgH);//透视变换标定图像
+static void get_actual_point(float actual_point[2],int row,int col,int limit_line,ALGCFGS *pCfgs);//得到图像点的实际值
+static float distance_two(float actual_point1[2],float actual_point2[2]);//计算两点距离
+
+float fuzzy(unsigned char* puNewImage, int nWidth, int nHight);//能见度计算
+bool visible_judge(Uint16 *a, int visib_length, int threshold);//统计能见度
+bool Color_deviate(Uint8 *uImage, Uint8 *vImage, int width, int height);//视频图像状态计算
+
+/////////////////////////////////////////////////////////////事件检测
+bool CfgEventRegion(mEventInfo	EventDetectCfg, ALGCFGS *pCfgs, ALGPARAMS *pParams);//配置交通事件区域
+bool MaskEventImage(ALGCFGS *pCfgs, ALGPARAMS *pParams, int imgW, int imgH);//设置事件检测区域
+void TrafficEventAnalysis(ALGCFGS *pCfgs, ALGPARAMS *pParams, int width, int height);//交通事件分析
+void EventDetectProc(ALGCFGS *pCfgs, ALGPARAMS *pParams, int width, int height);//交通事件检测，得到检测结果
+void TrafficRoadAnalysis(ALGCFGS *pCfgs, ALGPARAMS *pParams, int width, int height);//交通道路事件分析
+bool ArithInitEvent(ALGCFGS *pCfgs, mEventInfo	EventDetectCfg, ALGPARAMS *pParams);//事件检测初始化
+Uint16 ArithProcEvent(IplImage* img, OUTBUF* outBuf, ALGCFGS *pCfgs, ALGPARAMS *pParams, char* videoName,char* resultfile);//事件检测
+//雷达目标和视频检测目标合并
+void associate_radar_and_video(ALGCFGS *pCfgs, mRadarRTObj* objRadar, int objRadarNum, OBJECTINFO* objVehicleInfo, Uint16* objVehicleNum, OBJECTINFO* objPersonInfo, Uint16* objPersonNum);
+//雷达目标和车辆目标合并
+void associate_radar_and_video(ALGCFGS *pCfgs, ALGPARAMS *pParams, mRadarRTObj* objRadar, int objRadarNum, OBJECTINFO* objVehicleInfo, Uint16* objVehicleNum);
+#endif
+
+
+
