@@ -1,0 +1,119 @@
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param {
+    shape {
+      dim: 1
+      dim: 64
+      dim: 56
+      dim: 56
+    }
+  }
+}
+layer {
+	bottom: "data"
+	top: "conv1"
+	name: "conv_1"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		stride: 1
+                pad: 1
+		bias_term: true
+	}
+	bottom_mlu_dtype {
+	  type: DT_INT8
+	  position: 1
+	  scale: 1.035677
+	}
+	blobs_dtype {
+	  type: DT_INT8
+	  position: -7
+	  scale: 1.4087094
+	}
+}
+layer {
+  name: "bn_1"
+  type: "BatchNorm"
+  bottom: "conv1"
+  top: "bn1"
+  param {
+    lr_mult: 0
+  }
+  param {
+    lr_mult: 0
+  }
+  param {
+    lr_mult: 0
+  }
+  batch_norm_param {
+    use_global_stats: true
+    use_alpha_beta: false
+    eps: 0.001
+    moving_average_fraction: 0.1
+  }
+}
+layer {
+	top: "relu1"
+	bottom: "bn1"
+	name: "relu_1"
+	type: "ReLU"
+}
+layer {
+	bottom: "relu1"
+	top: "conv2"
+	name: "conv_2"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 1
+		stride: 1
+		bias_term: true
+	}
+	bottom_mlu_dtype {
+	  type: DT_INT8
+	  position: 1
+	  scale: 1.035677
+	}
+	blobs_dtype {
+	  type: DT_INT8
+	  position: -7
+	  scale: 1.4087094
+	}
+}
+layer {
+  name: "bn_2"
+  type: "BatchNorm"
+  bottom: "conv2"
+  top: "bn2"
+  param {
+    lr_mult: 0
+  }
+  param {
+    lr_mult: 0
+  }
+  param {
+    lr_mult: 0
+  }
+  batch_norm_param {
+    use_global_stats: true
+    use_alpha_beta: false
+    eps: 0.001
+    moving_average_fraction: 0.1
+  }
+}
+layer {
+  name: "eltwise_1"
+  type: "Eltwise"
+  bottom: "data"
+  bottom: "bn2"
+  top: "eltwise1"
+}
+layer {
+	top: "relu2"
+	bottom: "eltwise1"
+	name: "relu_2"
+	type: "ReLU"
+}

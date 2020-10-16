@@ -1,0 +1,25 @@
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param {
+    shape {
+      dim: 1
+      dim: 32
+      dim: 224
+      dim: 224
+    }
+  }
+}
+layer {
+  name: "perm1"
+  type: "Permute"
+  bottom: "data"
+  top: "perm1"
+  permute_param {
+    order: 0
+    order: 1
+    order: 2
+    order: 3
+  }
+}

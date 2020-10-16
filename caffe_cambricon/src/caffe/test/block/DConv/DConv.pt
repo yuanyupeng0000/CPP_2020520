@@ -1,0 +1,39 @@
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param {
+    shape {
+      dim: 1
+      dim: 32
+      dim: 224
+      dim: 224
+    }
+  }
+}
+layer {
+  name: "deconv_1"
+  type: "Deconvolution"
+  bottom: "data"
+  top: "deconv1"
+  param {
+    lr_mult: 0
+  }
+  convolution_param {
+    num_output: 3
+    bias_term: false
+    kernel_size: 3
+    stride: 1
+  }
+  bottom_mlu_dtype {
+    type: DT_INT8
+    position: 1
+    scale: 1.035677
+  }
+  blobs_dtype {
+    type: DT_INT8
+    position: -7
+    scale: 1.4087094
+  }
+
+}

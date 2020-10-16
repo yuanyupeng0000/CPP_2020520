@@ -1,0 +1,23 @@
+name: "yuv2rgb"
+input: "y-data"
+input_shape {
+  dim: 1
+  dim: 1
+  dim: 300
+  dim: 320
+}
+input: "uv-data"
+input_shape {
+  dim: 1
+  dim: 1
+  dim: 300
+  dim: 320
+}
+layer {
+  name: "yuv2rgb"
+  type: "MLUYUVtoRGB"
+  bottom: "y-data"
+  bottom: "uv-data"
+  top: "data"
+  #external_output: 1
+}

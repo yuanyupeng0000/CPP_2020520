@@ -1,0 +1,13 @@
+name: "exp_net"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 6 dim: 32 dim: 32 } }
+}
+layer {
+  name: "exp1"
+  type: "Exp"
+  bottom: "data"
+  top: "exp1"
+}

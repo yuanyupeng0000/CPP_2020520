@@ -1,0 +1,51 @@
+name: "Concat"
+layer {
+  name: "data1"
+  type: "Input"
+  top: "data1"
+  input_param { shape: { dim: 1 dim: 2 dim: 4 dim: 1 } }
+}
+layer {
+  name: "data2"
+  type: "Input"
+  top: "data2"
+  input_param { shape: { dim: 1 dim: 2 dim: 5 dim: 1 } }
+}
+#layer {
+#  name: "data3"
+#  type: "Input"
+#  top: "data3"
+#  input_param { shape: { dim: 1 dim: 2400 dim: 1 dim: 1 } }
+#}
+#layer {
+#  name: "data4"
+#  type: "Input"
+#  top: "data4"
+#  input_param { shape: { dim: 1 dim: 600 dim: 1 dim: 1 } }
+#}
+#layer {
+#  name: "data5"
+#  type: "Input"
+#  top: "data5"
+#  input_param { shape: { dim: 1 dim: 216 dim: 1 dim: 1 } }
+#}
+#layer {
+#  name: "data6"
+#  type: "Input"
+#  top: "data6"
+#  input_param { shape: { dim: 1 dim: 24 dim: 1 dim: 1 } }
+#}
+layer {
+  name: "c1"
+  type: "Concat"
+  concat_param {
+    axis: 2
+  }
+  bottom: "data1"
+  bottom: "data2"
+  #bottom: "data3"
+  #bottom: "data4"
+  #bottom: "data5"
+  #bottom: "data6"
+  top: "c1"
+}

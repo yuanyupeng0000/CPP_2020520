@@ -1,0 +1,19 @@
+name: "LRN"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 2 dim: 6 dim: 2 dim: 2 } }
+}
+layer {
+  name: "LRN1"
+  type: "LRN"
+  bottom: "data"
+  top: "LRN1"
+  lrn_param{
+    norm_region:0
+    alpha:1
+    beta:0.75
+    k:1
+  }
+}

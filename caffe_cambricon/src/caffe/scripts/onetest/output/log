@@ -1,0 +1,4 @@
+load file: output/alexnet.cambricon
+CNRT: 4.6.0 e158c88
+2020-10-10 08:55:56.340482: [cnrtError] [4417] [Card : 0] Open file failed! Error no: 2 - No such file or directory.
+2020-10-10 08:55:56.340489: [cnrtError] [4417] [Card : 0] Load model from file failed!Segmentation fault (core dumped)

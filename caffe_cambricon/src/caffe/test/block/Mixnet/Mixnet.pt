@@ -1,0 +1,160 @@
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param {
+    shape {
+      dim: 1
+      dim: 40
+      dim: 56
+      dim: 56
+    }
+  }
+}
+layer {
+  name: "slice_1"
+  type: "Slice"
+  bottom: "data"
+  top: "slice1"
+  top: "slice2"
+  top: "slice3"
+#  top: "slice4"
+#  top: "slice5"
+  slice_param {
+	axis: 1
+	slice_point:8
+	slice_point:16
+#	slice_point:24
+#	slice_point:32
+  }
+}
+layer {
+	bottom: "slice1"
+	top: "conv1"
+	name: "conv_1"
+	type: "Convolution"
+	convolution_param {
+		num_output: 8
+		kernel_size: 3
+		stride: 1
+                pad: 1
+		group: 8
+		bias_term: false
+	}
+	bottom_mlu_dtype {
+	  type: DT_INT8
+	  position: 1
+	  scale: 1.035677
+	}
+	blobs_dtype {
+	  type: DT_INT8
+	  position: -7
+	  scale: 1.4087094
+	}
+}
+layer {
+	bottom: "slice2"
+	top: "conv2"
+	name: "conv_2"
+	type: "Convolution"
+	convolution_param {
+		num_output: 8
+		kernel_size: 5
+		stride: 1
+		pad: 2
+		group: 8
+		bias_term: false
+	}
+	bottom_mlu_dtype {
+	  type: DT_INT8
+	  position: 1
+	  scale: 1.035677
+	}
+	blobs_dtype {
+	  type: DT_INT8
+	  position: -7
+	  scale: 1.4087094
+	}
+}
+layer {
+	bottom: "slice3"
+	top: "conv3"
+	name: "conv_3"
+	type: "Convolution"
+	convolution_param {
+		num_output: 8
+		kernel_size: 7
+		stride: 1 
+                pad: 3
+		group: 8
+		bias_term: false
+	}
+	bottom_mlu_dtype {
+	  type: DT_INT8
+	  position: 1
+	  scale: 1.035677
+	}
+	blobs_dtype {
+	  type: DT_INT8
+	  position: -7
+	  scale: 1.4087094
+	}
+}
+#layer {
+#	bottom: "slice4"
+#	top: "conv4"
+#	name: "conv_4"
+#	type: "Convolution"
+#	convolution_param {
+#		num_output: 8
+#		kernel_size: 9
+#		stride: 1
+#                pad: 4
+#		group: 8
+#		bias_term: false
+#	}
+#	bottom_mlu_dtype {
+#	  type: DT_INT8
+#	  position: 1
+#	  scale: 1.035677
+#	}
+#	blobs_dtype {
+#	  type: DT_INT8
+#	  position: -7
+#	  scale: 1.4087094
+#	}
+#}
+#layer {
+#	bottom: "slice5"
+#	top: "conv5"
+#	name: "conv_5"
+#	type: "Convolution"
+#	convolution_param {
+#		num_output: 8
+#		kernel_size: 11
+#		stride: 1
+#                pad: 5
+#		group: 8
+#		bias_term: true
+#	}
+#	bottom_mlu_dtype {
+#	  type: DT_INT8
+#	  position: 1
+#	  scale: 1.035677
+#	}
+#	blobs_dtype {
+#	  type: DT_INT8
+#	  position: -7
+#	  scale: 1.4087094
+#	}
+#}
+layer {
+  name: "concat_1"
+  type: "Concat"
+  bottom: "conv1"
+  bottom: "conv2"
+  bottom: "conv3"
+#  bottom: "conv4"
+#  bottom: "conv5"
+  top: "concat1"
+}

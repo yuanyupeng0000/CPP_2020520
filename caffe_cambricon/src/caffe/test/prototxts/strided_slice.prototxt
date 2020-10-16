@@ -1,0 +1,23 @@
+name: "StridedSlice"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 2 dim: 3 dim: 2 dim: 3 } }
+}
+layer {
+  name: "StridedSlice"
+  type: "StridedSlice"
+  bottom: "data"
+  top: "StridedSlice"
+  stridedslice_param {
+     n_begin: 0
+     c_begin: 1
+     h_begin: 0
+     w_begin: 0
+     n_end: 1
+     c_end: 2
+     h_end: 1
+     w_end: 3
+     }
+}

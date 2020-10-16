@@ -1,0 +1,28 @@
+name: "PsROIPooling"
+
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 784 dim: 38 dim: 38 } }
+}
+
+layer {
+  name: "rois"
+  type: "Input"
+  top: "rois"
+  input_param { shape: { dim: 1 dim: 112 dim: 1 dim: 5 } }
+}
+
+layer {
+  bottom: "data"
+  bottom: "rois"
+  top: "psroipooled_loc_rois"
+  name: "psroipooled_loc_rois"
+  type: "PSROIPooling"
+  psroi_pooling_param {
+    spatial_scale: 1
+    output_dim: 16
+    group_size: 7
+  }
+}

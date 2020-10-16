@@ -1,0 +1,32 @@
+name: "RPN"
+
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param{ shape:{dim:10 dim:512 dim:13 dim:13}}
+}
+
+layer {
+  name: "RPN"
+  type: "RPN"
+  bottom: "data"
+  top: "rpn_bbox_pred"
+  top: "rpn_cls_score"
+  rpn_param{
+    conv_num_output: 256
+    conv_kernel_size:3
+    conv_pad:1
+    conv_stride:1
+
+    cls_num_output: 18
+    cls_kernel_size:1
+    cls_pad:0
+    cls_stride:1
+
+    reg_num_output: 36
+    reg_kernel_size:1
+    reg_pad:0
+    reg_stride:1
+  }
+}

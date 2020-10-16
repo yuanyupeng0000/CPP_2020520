@@ -1,0 +1,24 @@
+input:"data"
+
+input_shape
+
+{ dim:1 dim:512 dim:13 dim:13 }
+
+layer{
+type:"Deconvolution"
+
+bottom:"data"
+
+top:"deconv"
+
+name:"deconv"
+
+convolution_param{
+num_output:512
+group:512
+pad:0
+kernel_size:1
+stride:2
+ }
+
+}

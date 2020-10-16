@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/libpng_test.dir/libpng_test.cpp.o  -o libpng_test -rdynamic -lpng -lz 

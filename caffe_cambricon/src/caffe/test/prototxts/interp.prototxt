@@ -1,0 +1,20 @@
+name: "interp"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 32 dim: 14 dim: 14 } }
+}
+
+layer {
+  name: "interp"
+  type: "Interp"
+  top: "interp"
+  bottom: "data"
+  interp_param {
+    shrink_factor: 4
+    zoom_factor: 3
+    pad_beg: 0
+    pad_end: 0
+  }
+}

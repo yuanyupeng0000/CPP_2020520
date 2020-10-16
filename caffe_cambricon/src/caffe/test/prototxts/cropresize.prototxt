@@ -1,0 +1,66 @@
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param {
+    shape {
+      dim: 1
+      dim: 4
+      dim: 224
+      dim: 224
+    }
+  }
+}
+
+layer {
+  name: "crop_param"
+  type: "Input"
+  top: "crop_param"
+  input_param {
+    shape {
+      dim: 1
+      dim: 4
+      dim: 1
+      dim: 1
+      }
+  }
+}
+layer {
+  name: "roi"
+  type: "Input"
+  top: "roi_num"
+  input_param {
+    shape {
+      dim: 1
+      dim: 1
+      dim: 1
+      dim: 1
+      }
+  }
+}
+layer {
+  name: "pad"
+  type: "Input"
+  top: "padding"
+  input_param {
+    shape {
+      dim: 1
+      dim: 1
+      dim: 1
+      dim: 4
+      }
+  }
+}
+layer {
+  name: "Resizecrop"
+  type: "MLUResizecrop"
+  resize_crop_param {
+    resize_h: 224
+    resize_w: 224
+  }
+  bottom: "data"
+  bottom: "crop_param"
+  bottom: "roi_num"
+  bottom: "padding"
+  top: "resizecrop"
+}

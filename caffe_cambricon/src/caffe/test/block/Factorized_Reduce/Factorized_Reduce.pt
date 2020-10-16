@@ -1,0 +1,87 @@
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param {
+    shape {
+      dim: 1
+      dim: 16
+      dim: 224
+      dim: 224
+    }
+  }
+}
+layer {
+	top: "relu1"
+	bottom: "datat"
+	name: "relu_1"
+	type: "ReLU"
+}
+layer {
+	bottom: "relu1"
+	top: "conv1"
+	name: "conv_1"
+	type: "Convolution"
+	convolution_param {
+		num_output: 16
+		kernel_size: 1
+		stride: 2
+		bias_term: false
+	}
+	bottom_mlu_dtype {
+	  type: DT_INT8
+	  position: 1
+	  scale: 1.035677
+	}
+	blobs_dtype {
+	  type: DT_INT8
+	  position: -7
+	  scale: 1.4087094
+	}
+}
+layer {
+	bottom: "relu1"
+	top: "conv2"
+	name: "conv_2"
+	type: "Convolution"
+	convolution_param {
+		num_output: 16
+		kernel_size: 1
+		stride: 2
+		pad:1
+		bias_term: false
+	}
+	bottom_mlu_dtype {
+	  type: DT_INT8
+	  position: 1
+	  scale: 1.035677
+	}
+	blobs_dtype {
+	  type: DT_INT8
+	  position: -7
+	  scale: 1.4087094
+	}
+}
+layer {
+  name: "crop_1"
+  type: "Crop"
+  bottom: "conv2"
+  bottom: "conv1"
+  top: "crop1"
+  crop_param {
+    axis: 2
+    offset: 1
+    offset: 1
+  }
+}
+layer {
+  name: "concat_1"
+  type: "Concat"
+  concat_param {
+    axis: 2
+  }
+  bottom: "conv1"
+  bottom: "crop1"
+  top: "concat1"
+}
+

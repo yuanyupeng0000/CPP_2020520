@@ -1,0 +1,31 @@
+name: "Slice"
+layer {
+  name: "data1"
+  type: "Input"
+  top: "data1"
+  input_param { shape: { dim: 1 dim: 4 dim: 28 dim: 28 } }
+}
+layer {
+  name: "Slice1"
+  type: "Slice"
+  bottom: "data1"
+  top: "R"
+  top: "G"
+  top: "B"
+  top: "A"
+  slice_param {
+    use_image: true
+  }
+}
+layer {
+  name: "c1"
+  type: "Concat"
+  bottom: "A"
+  bottom: "B"
+  bottom: "G"
+  bottom: "R"
+  top: "c1"
+  concat_param {
+    use_image: true
+  }
+}

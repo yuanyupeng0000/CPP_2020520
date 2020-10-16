@@ -1,0 +1,15 @@
+name: "yuv2rgb"
+input: "yuv-data"
+input_shape {
+  dim: 1
+  dim: 1
+  dim: 300
+  dim: 300
+}
+
+layer {
+  name: "yuv2rgb"
+  type: "MLUGrayNormalized"
+  bottom: "yuv-data"
+  top: "data"
+}

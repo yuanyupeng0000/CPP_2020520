@@ -1,0 +1,5 @@
+script for generating offline model
+USAGE: ./genoff.sh argv1 argv2 argv3
+argv1: prototxt of caffe net, e.g.: alexnet.prototxt
+argv2: caffemodel of caffe weights, e.g.: alexnet.caffemodel
+argv3: core version

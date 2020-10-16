@@ -1,0 +1,28 @@
+name: "ROIAlign"
+
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 392 dim: 38 dim: 38 } }
+}
+
+layer {
+  name: "rois"
+  type: "Input"
+  top: "rois"
+  input_param { shape: { dim: 1 dim: 112 dim: 1 dim: 5 } }
+}
+
+layer {
+  name: "roialign"
+  type: "ROIAlign"
+  top: "output"
+  bottom: "data"
+  bottom: "rois"
+  roi_align_param {
+    spatial_scale: 1
+    pooled_h: 7
+    pooled_w: 7
+  }
+}

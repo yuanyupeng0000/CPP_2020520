@@ -1,0 +1,111 @@
+Copyright 2018 The Cambricon release Project
+
+------------------------------------------------------------------
+
+This directory contains files for Cambricon caffe.
+
+CONTENTS OF THIS DIRECTORY
+
+
+./src: Cambricon caffe source code and build scripts
+
+./include: Cambricon caffe header files.
+
+./lib: The lib files are in this directory.
+    |
+    |-> _caffe.so         Cambricon caffe lib file.
+    |-> libcaffe.so.5.0.0 Cambricon caffe lib file.
+    |-> libcaffe.so       Soft link to libcaffe.so.5.0.0.
+    |-> libcaffeproto.a   Cambricon caffe proto lib file.
+    |-> libgtest.a        Camrbricon caffe gtest lib file.
+
+./example: Cambricon caffe examples
+        |
+        |->online->c++ Cambricon caffe online examples
+                     |
+                     |->classification Classification examples such as VGG, ResNet
+                     |->faster_rcnn_resnet18 Faster RCNN example
+                     |->ssd_vgg16 SSD example
+                     |->yolov2 YOLOv2 example
+
+        |->offline->c++ Cambricon caffe offline examples
+                      |
+                      |->classification Classification examples such as VGG, ResNet
+                      |->faster_rcnn_resnet18 Faster RCNN example
+                      |->ssd_vgg16 SSD example
+                      |->yolov2 YOLOv2 example
+
+./models: Cambricon caffe offline model files
+       |
+       |->offline
+
+./tools: Cambricon caffe tool files
+       |
+       |-> caffe                Command caffe genoff is the command to generate offline cambricon model
+       |
+       |-> get_position_normal  Confert fp16 model to fix8 one
+       |
+       |-> set_split            Generate parallel prototxt from conventional one
+
+
+Build and execute test case for operations.
+There are two types examples, online examples and offline examples
+Every example provide float16 and fix8 cases.
+
+################# offline examples ##############################
+1. Classification examples (such as alexnet, resnet, inception, vgg, mobilenet, squeezenet)
+
+   cd $CAFFE_HOME/examples/offline/c++/classification/
+   ./run_fp16.sh (It will run single core and multi core cases, every case will run in dense and sparse mode with model parallel=1, 4, 8)
+   ./run_fix8.sh (It will run single core and multi core cases, every case will run in dense and sparse mode with model parallel=1, 4, 8)
+
+   The results will in $CAFFE_HOME/src/caffe/examples/classification
+
+2. Faster RCNN example
+
+   cd $CAFFE_HOME/examples/offline/c++/faster_rcnn_resnet18/
+   ./run_fp16.sh
+   ./run_fix8.sh
+
+   The results will in $CAFFE_HOME/src/caffe/examples/faster_rcnn_resnet18/
+
+3. SSD example
+
+   cd $CAFFE_HOME/examples/offline/c++/ssd_vgg16/
+   ./run_fp16.sh (It will run single core and multi core cases, every case will run in dense and sparse mode with model parallel=1, 4, 8)
+   ./run_fix8.sh (It will run single core and multi core cases, every case will run in dense and sparse mode with model parallel=1, 4, 8)
+
+   The results will in $CAFFE_HOME/src/caffe/examples/ssd/
+
+4. YOLOv2 example
+
+   cd $CAFFE_HOME/examples/offline/c++/yolov2/
+   ./run_fp16.sh (It will run single core and multi core cases, every case will run in dense and sparse mode with model parallel=1, 4, 8)
+   ./run_fix8.sh (It will run single core and multi core cases, every case will run in dense mode with model parallel=1, 4, 8)
+
+   The results will in $CAFFE_HOME/src/caffe/examples/yolo_v2/
+
+################# online examples ##############################
+1. Classification examples
+
+   cd $CAFFE_HOME/examples/online/c++/classification/
+   ./run_fp16.sh
+   ./run_fix8.sh
+
+2. Faster RCNN example
+
+   cd $CAFFE_HOME/examples/online/c++/faster_rcnn_resnet18/
+   ./run_fp16.sh
+   ./run_fix8.sh
+
+3. SSD example
+
+   cd $CAFFE_HOME/examples/online/c++/ssd_vgg16/
+   ./run_fp16.sh
+   ./run_fix8.sh
+
+4. YOLOv2 example
+
+   cd $CAFFE_HOME/examples/online/c++/yolov2//
+   ./run_fp16.sh
+   ./run_fix8.sh

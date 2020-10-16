@@ -1,0 +1,28 @@
+name: "ROIPooling"
+
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 256 dim: 32 dim: 32 } }
+}
+
+layer {
+  name: "rois"
+  type: "Input"
+  top: "rois"
+  input_param { shape: { dim: 1 dim: 112 dim: 1 dim: 5 } }
+}
+
+layer {
+  bottom: "data"
+  bottom: "rois"
+  top: "output"
+  name: "roipoo"
+  type: "ROIPooling"
+  roi_pooling_param {
+    spatial_scale: 1
+    pooled_h: 6
+    pooled_w: 6
+  }
+}

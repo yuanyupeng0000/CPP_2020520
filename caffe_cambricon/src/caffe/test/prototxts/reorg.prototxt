@@ -1,0 +1,17 @@
+name: "reorg"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape:{ dim: 2 dim: 8 dim: 4 dim:4 } }
+}
+
+layer {
+  name: "reorg"
+  type: "Reorg"
+  bottom: "data"
+  top: "reorg"
+  reorg_param {
+    stride:2
+  }
+}

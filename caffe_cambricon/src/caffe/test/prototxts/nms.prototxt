@@ -1,0 +1,23 @@
+name: "nms"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 32 dim: 1 dim:5} }
+}
+
+layer {
+  name: "nms"
+  type: "Nms"
+  top: "nms"
+  bottom: "data"
+  nms_param{
+    box_size:32
+    out_size:16
+    nms_thresh:0.7
+    nms_scale:0.25
+    score_thresh:0.03
+    filter_scores:false
+    normalize_area:false
+  }
+}

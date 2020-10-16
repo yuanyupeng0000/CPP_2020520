@@ -1,0 +1,16 @@
+name: "PReLu"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 16 dim: 28 dim: 28 } }
+}
+layer {
+  name: "PReLU1"
+  type: "PReLU"
+  prelu_param {
+    channel_shared: true
+  }
+  bottom: "data"
+  top: "PReLU"
+}

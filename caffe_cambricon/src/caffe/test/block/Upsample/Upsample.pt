@@ -1,0 +1,23 @@
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param {
+    shape {
+      dim: 1
+      dim: 32
+      dim: 128
+      dim: 128
+    }
+  }
+}
+layer {
+  name: "upsample1"
+  type: "Upsample"
+  bottom: "data"
+  top: "upsample_1"
+  upsample_param {
+    scale: 2
+    nearestneighbor_mode: true
+  }
+}

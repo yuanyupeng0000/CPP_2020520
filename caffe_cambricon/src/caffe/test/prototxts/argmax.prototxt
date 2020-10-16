@@ -1,0 +1,17 @@
+name: "argmax"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 100 dim: 8 dim: 1 } }
+}
+layer {
+  name: "argmax"
+  type: "ArgMax"
+  bottom: "data"
+  top: "argmax"
+  argmax_param {
+     axis: 2
+     top_k: 5
+  }
+}

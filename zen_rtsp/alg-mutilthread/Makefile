@@ -6,6 +6,8 @@ DUSE_GPU = 0
 DDETECT_ATTRI = 0
 DDETECT_PLATE = 0
 DUSE_PYTHON = 0
+DUSE_OPENVINO = 0
+DUSE_LIBTORCH = 1
 ## source file path
 #SRC_PATH   := $(PWD)
 #SRC_PATH=$(PWD)
@@ -55,6 +57,12 @@ CFLAGS  += $(foreach dir, $(INCLUDE_PATH), -I$(dir))  -g
 CFLAGS += -fopenmp 
 ifeq (1, ${DUSE_PYTHON})
 	CFLAGS += -DUSE_PYTHON
+endif
+ifeq (1, ${DUSE_OPENVINO})
+        CFLAGS += -DUSE_OPENVINO
+endif
+ifeq (1, ${DUSE_LIBTORCH})
+        CFLAGS += -DUSE_LIBTORCH
 endif
 ## get all library path
 LDFLAGS += $(foreach lib, $(LIBRARY_PATH), -L$(lib)) -g 

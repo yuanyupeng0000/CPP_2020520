@@ -1,0 +1,14 @@
+name: "sigmoid"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 32 dim: 2 dim: 2 } }
+}
+
+layer {
+  name: "sigmoid"
+  type: "Sigmoid"
+  top: "sigmoid"
+  bottom: "data"
+}

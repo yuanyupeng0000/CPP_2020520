@@ -1,0 +1,45 @@
+name: "yuv2rgb"
+layer {
+  name: "y1"
+  type: "Input"
+  top: "y1"
+  input_param { shape: { dim: 16 dim: 2  dim: 1 dim: 1 } }
+}
+layer {
+  name: "uv1"
+  type: "Input"
+  top: "uv1"
+  input_param { shape: { dim: 16 dim: 2  dim: 1 dim: 1 } }
+}
+layer {
+  name: "size"
+  type: "Input"
+  top: "size"
+  input_param { shape: { dim: 16 dim: 2  dim: 1 dim: 1 } }
+}
+layer {
+  name: "roi"
+  type: "Input"
+  top: "roi"
+  input_param { shape: { dim: 16 dim: 2  dim: 1 dim: 1 } }
+}
+layer {
+  name: "fill"
+  type: "Input"
+  top: "fill"
+  input_param { shape: { dim: 1 dim: 3  dim: 1 dim: 1 } }
+}
+layer {
+  name: "resizeConvert"
+  type: "MLUResizeConvert"
+  resize_convert_param {
+     resize_h: 224
+     resize_w: 224
+  }
+  bottom: "y1"
+  bottom: "uv1"
+  bottom: "size"
+  bottom: "roi"
+  bottom: "fill"
+  top: "data"
+}

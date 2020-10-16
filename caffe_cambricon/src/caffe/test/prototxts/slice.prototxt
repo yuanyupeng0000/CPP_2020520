@@ -1,0 +1,13 @@
+name: "Slice"
+layer {
+  name: "data1"
+  type: "Input"
+  top: "data1"
+  input_param { shape: { dim: 64 dim: 1 dim: 28 dim: 28 } }
+}
+layer {
+  name: "Slice1"
+  type: "Slice"
+  bottom: "data1"
+  top: "Slice1"
+}

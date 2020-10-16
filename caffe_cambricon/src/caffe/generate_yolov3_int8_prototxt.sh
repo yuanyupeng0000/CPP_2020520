@@ -1,0 +1,1 @@
+./build/tools/generate_quantized_pt -blobs_dtype INT8 -ini_file convert_quantized_yolov3.ini -mode common -model /opt/cambricon/models/yolov3_.prototxt -weights /opt/cambricon/models/yolov3_.caffemodel -outputmodel /opt/cambricon/models/yolov3_int8.prototxt -top_dtype FLOAT16

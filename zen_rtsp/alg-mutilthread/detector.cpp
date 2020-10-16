@@ -68,9 +68,16 @@ void py_init()
 	PyEval_InitThreads(); 
 	PyEval_ReleaseThread(PyThreadState_Get()); 
 #else
+#ifdef USE_OPENVINO
 	printf("[ INFO ] Intel dldt init \n");
 	NCS_NUM = intel_dldt_init("FP16/vpu_config.ini");
 	printf("[ INFO ] Intel dldt init end. NCS_NUM = %d\n", NCS_NUM);
+#endif
+#ifdef USE_LIBTORCH
+	printf("[ INFO ] Libtorch init \n");
+	NCS_NUM = intel_dldt_init("torch/torch_config.ini");
+	printf("[ INFO ] Libtorch init end. MAX_NUM = %d\n", NCS_NUM);
+#endif
 #endif
 	memset(NCS_INDEX, 0, MAX_NCS_NUM * sizeof(int));
 }

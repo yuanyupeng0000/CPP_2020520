@@ -1,0 +1,19 @@
+name: "relu_net"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 50  dim: 4 dim: 5 } }
+}
+layer {
+  name: "relu1"
+  type: "LstmReshape"
+  bottom: "data"
+  top: "asdf"
+  lstm_reshape_param {
+    shape {
+      dim: 1
+      dim: 1000
+    }
+  }
+}

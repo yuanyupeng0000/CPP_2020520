@@ -1,0 +1,23 @@
+name: "batchNorm"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 1024 dim: 2 dim: 2 } }
+}
+
+layer {
+  name: "bn"
+  type: "BatchNorm"
+  top: "bn"
+  bottom: "data"
+  param {lr_mult: 0}
+  param {lr_mult: 0}
+  param {lr_mult: 0}
+
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 0.0001
+  }
+}

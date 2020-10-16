@@ -1,0 +1,22 @@
+name: "cyclesub"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 2 dim: 3 dim: 4 dim: 5 } }
+}
+
+layer {
+  name: "data2"
+  type: "Input"
+  top: "data2"
+  input_param { shape: { dim: 1 dim: 3 dim: 1 dim:1 } }
+}
+
+layer {
+  name: "cyclesub"
+  type: "CycleSub"
+  top: "cyclesub"
+  bottom: "data"
+  bottom: "data2"
+}

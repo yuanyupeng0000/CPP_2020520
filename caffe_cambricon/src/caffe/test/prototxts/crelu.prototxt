@@ -1,0 +1,18 @@
+# Copyright [2018] <cambricon>
+name: "crelu_net"
+layer {
+  name: "data"
+  type: "Input"
+  top:  "data"
+  input_param { shape: { dim:10 dim:8 dim:14 dim:14 } }
+}
+layer {
+  name: "crelu"
+  type: "CReLU"
+  bottom: "data"
+  top: "output"
+  crelu_param{
+    concat_axis: 1
+    negative_slope: 0.5
+  }
+}

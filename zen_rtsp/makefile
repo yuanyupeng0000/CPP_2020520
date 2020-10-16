@@ -7,6 +7,8 @@ DBG_ENABLE=1
 DUSE_GPU = 0
 DDETECT_PLATE = 0
 DDUSE_PYTHON = 0
+DUSE_OPENVINO = 0
+DUSE_LIBTORCH = 1
 ORACLE_VS = 0
 #exclude_files:=client_config_main.c
 #SOURCE:=$(filter-out $(exclude_files),$(SOURCE))
@@ -52,9 +54,17 @@ LFLGS +=  -Wl,-rpath=./lib/opencv3.3 -L./lib/opencv3.3 \
 	-Wl,-rpath=./lib \
 	-lavcodec -lavformat -lavutil -lswresample -lswscale -lfreetype \
     -export-dynamic -w    \
- 	-lpthread -L./lib -lzenalg -lssh2 -lobject_detection_yolov3_async -lwebsockets \
+ 	-lpthread -L./lib -lzenalg -lssh2 -lwebsockets \
  	-lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_ml -lopencv_video -lopencv_videoio -lopencv_imgcodecs -lopencv_flann 
 #LFLGS +=`pkg-config --libs opencv` 
+ifeq (1, ${DUSE_OPENVINO})
+        CFLGS += -DUSE_OPENVINO
+        LFLGS += -L./lib -lobject_detection_yolov3_async
+endif
+ifeq (1, ${DUSE_LIBTORCH})
+        CFLGS += -DUSE_LIBTORCH
+        LFLGS += -L./lib -ltorch_yolov5
+endif
 ifeq (1, ${ORACLE_VS})
 	LFLGS += -Wl,-rpath=/usr/lib/oracle/11.2/client64/lib -L/usr/lib/oracle/11.2/client64/lib -lclntsh 
 endif

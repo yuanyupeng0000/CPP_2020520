@@ -1,0 +1,24 @@
+name: "rnn"
+layer {
+ name: "data"
+ type: "Input"
+ top: "data1"
+ top: "data2"
+ top: "data3"
+ input_param {
+  shape: {dim: 3 dim: 2 dim: 16}
+  shape: {dim: 3 dim: 2}
+  shape: {dim: 2 dim: 16}
+ }
+}
+layer {
+ name: "rnn"
+ type: "RNN"
+ recurrent_param {
+  num_output: 16
+ }
+ bottom: "data1"
+ bottom: "data2"
+ bottom: "data3"
+ top: "rnn"
+}

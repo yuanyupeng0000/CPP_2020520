@@ -1,0 +1,37 @@
+name: "upsample"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 8 dim: 8 dim: 32 dim: 32 } }
+}
+# kernel_size = stride
+# data_h % kernel_size == 0
+# data_w % kernel_size == 0
+layer {
+  name: "pool"
+  type: "Pooling"
+  bottom: "data"
+  top: "pool_data"
+  top: "pool_index"
+  pooling_param{
+   pool: MAX
+   kernel_size: 2
+   stride: 2
+  }
+}
+# upsample_h = data_h
+# upsample_w = data_w
+# scale = kernel_size
+layer {
+  name: "upsample"
+  type: "Upsample"
+  bottom: "pool_data"
+  bottom: "pool_index"
+  top: "result"
+  upsample_param{
+   #upsample_h: 32
+   #upsample_w: 32
+   scale: 2
+  }
+}

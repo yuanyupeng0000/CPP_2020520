@@ -1,0 +1,30 @@
+name: "yolo_detect_net"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 425 dim: 19 dim: 19 } }
+}
+layer {
+  name: "detectionOut"
+  type: "DetectionOut"
+  bottom: "data"
+  top: "detectionOut"
+  detection_out_param{
+    side: 19
+    num_classes: 80
+    num_box: 5
+    confidence_threshold: 0.4
+    nms_threshold: 0.45
+    biases: 0.57273
+    biases: 0.677385
+    biases: 1.87446
+    biases: 2.06253
+    biases: 3.33843
+    biases: 5.47434
+    biases: 7.88282
+    biases: 3.52778
+    biases: 9.77052
+    biases: 9.16828
+  }
+}

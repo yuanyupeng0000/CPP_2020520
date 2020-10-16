@@ -1,0 +1,30 @@
+name: "silence"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  top:"data2"
+  input_param {
+    shape: { dim: 4 dim: 32 dim: 200 dim: 200 }
+    shape: { dim: 3 dim: 32 dim: 200 dim: 200 }
+    }
+}
+
+layer {
+  name: "relu1"
+  type: "ReLU"
+  bottom: "data"
+  top: "data"
+}
+layer {
+  name: "silence"
+  type: "Silence"
+  bottom: "data2"
+}
+
+layer {
+  name: "relu1"
+  type: "ReLU"
+  bottom: "data2"
+  top: "data2"
+}

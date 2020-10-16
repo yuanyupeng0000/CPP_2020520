@@ -1,0 +1,26 @@
+name: "deconv"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param {
+    shape: { dim: 1 dim: 16 dim: 30 dim: 30 }
+  }
+}
+layer {
+  name: "prob"
+  type: "Deconvolution"
+  bottom: "data"
+  top: "prob"
+  convolution_param {
+    num_output: 6
+    kernel_size: 5
+    pad: 1
+    stride: 1
+    group: 2
+    weight_filler {
+      type: "xavier"
+    }
+  }
+}
+

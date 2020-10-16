@@ -1,0 +1,28 @@
+name: "crop"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 64 dim: 8  dim: 28 dim: 28 } }
+}
+layer {
+  name: "data2"
+  type: "Input"
+  top: "data2"
+  input_param { shape: { dim: 20 dim: 4  dim: 16 dim: 16 } }
+}
+
+layer {
+  name: "crop"
+  type: "Crop"
+  bottom: "data"
+  bottom: "data2"
+  top: "crop"
+  crop_param {
+    axis: 0
+    offset: 16
+    offset: 1
+    offset: 3
+    offset: 3
+  }
+}

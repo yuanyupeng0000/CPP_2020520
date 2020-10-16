@@ -1,0 +1,22 @@
+name: "mult"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 3 dim: 3 dim: 2 dim: 2 } }
+}
+
+layer {
+  name: "data2"
+  type: "Input"
+  top: "data2"
+  input_param { shape: { dim: 3 dim: 3 dim: 2 dim:2 } }
+}
+
+layer {
+  name: "mult"
+  type: "Mult"
+  top: "mult"
+  bottom: "data"
+  bottom: "data2"
+}

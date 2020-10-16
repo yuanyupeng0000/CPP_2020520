@@ -1,0 +1,85 @@
+[17:31:55][info](main.c:24)====>.............programe start.............
+[17:31:55][info](fvdmysql/fvdmysql.c:67)====>Error connecting to Mysql: Access denied for user 'root'@'localhost' (using password: YES)
+
+[17:31:56][info](client_net.c:1114)====>checkaddr: 智能交通路口1 loglevel: 3
+[17:31:56][info](camera_service.c:680)====>camera_open
+[17:31:56][info](camera_service.c:265)====>process_fun_for_rtsp
+[17:31:56][info](common.c:1216)====>./res/ntpclient -s -i 3600 -g 1 -p 10009 -h 192.168.1.4 >/dev/null 2>&1  &
+[17:31:56][info](camera_service.c:350)====>process_fun_for_rtsp2
+[17:31:59][info](camera_service.c:749)====>cam_info[0]: creating thread
+[17:31:59][info](common.c:818)====> err================================>seg fault,restart system
+
+[17:31:59][info](common.c:866)====>calling exit@@@@@@@@@@@@@@@@@@@@
+[17:32:26][info](main.c:24)====>.............programe start.............
+[17:32:26][info](fvdmysql/fvdmysql.c:67)====>Error connecting to Mysql: Access denied for user 'root'@'localhost' (using password: YES)
+
+[17:32:26][info](client_net.c:1114)====>checkaddr: 智能交通路口1 loglevel: 3
+[17:32:27][info](camera_service.c:680)====>camera_open
+[17:32:27][info](camera_service.c:265)====>process_fun_for_rtsp
+[17:32:27][info](common.c:1216)====>./res/ntpclient -s -i 3600 -g 1 -p 10009 -h 192.168.1.4 >/dev/null 2>&1  &
+[17:32:28][info](camera_service.c:350)====>process_fun_for_rtsp2
+[17:32:29][info](camera_service.c:749)====>cam_info[0]: creating thread
+[17:32:29][info](common.c:818)====> err================================>seg fault,restart system
+
+[17:32:29][info](common.c:866)====>calling exit@@@@@@@@@@@@@@@@@@@@
+[17:34:1][info](main.c:24)====>.............programe start.............
+[17:34:1][info](fvdmysql/fvdmysql.c:67)====>Error connecting to Mysql: Access denied for user 'root'@'localhost' (using password: YES)
+
+[17:34:1][info](client_net.c:1114)====>checkaddr: 智能交通路口1 loglevel: 3
+[17:34:1][info](camera_service.c:680)====>camera_open
+[17:34:1][info](camera_service.c:265)====>process_fun_for_rtsp
+[17:34:1][info](common.c:1216)====>./res/ntpclient -s -i 3600 -g 1 -p 10009 -h 192.168.1.4 >/dev/null 2>&1  &
+[17:34:2][info](camera_service.c:350)====>process_fun_for_rtsp2
+[17:34:3][info](camera_service.c:749)====>cam_info[0]: creating thread
+[17:34:3][info](common.c:818)====> err================================>seg fault,restart system
+
+[17:34:3][info](common.c:866)====>calling exit@@@@@@@@@@@@@@@@@@@@
+[17:34:58][info](main.c:24)====>.............programe start.............
+[17:34:58][info](fvdmysql/fvdmysql.c:67)====>Error connecting to Mysql: Access denied for user 'root'@'localhost' (using password: YES)
+
+[17:34:58][info](client_net.c:1114)====>checkaddr: 智能交通路口1 loglevel: 3
+[17:34:59][info](camera_service.c:680)====>camera_open
+[17:34:59][info](camera_service.c:265)====>process_fun_for_rtsp
+[17:34:59][info](common.c:1216)====>./res/ntpclient -s -i 3600 -g 1 -p 10009 -h 192.168.1.4 >/dev/null 2>&1  &
+[17:35:0][info](camera_service.c:350)====>process_fun_for_rtsp2
+[17:35:1][info](camera_service.c:749)====>cam_info[0]: creating thread
+[17:35:2][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:31 / 49 list: 0 
+
+[17:35:2][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:35:2][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:35:2][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:35:2][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:35:3][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:30 / 31 list: 0 
+
+[17:35:3][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:35:3][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:35:3][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:35:3][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:35:4][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:30 / 30 list: 0 
+
+[17:35:4][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:35:4][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:35:4][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:35:4][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:35:5][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:31 / 31 list: 0 
+
+[17:35:5][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:35:5][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:35:5][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:35:5][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+

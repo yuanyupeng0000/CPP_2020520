@@ -1,0 +1,37 @@
+name: "mlp"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 1024 dim: 1 dim: 1 } }
+}
+
+layer {
+  name: "mlp"
+  type: "InnerProduct"
+  top: "mlp"
+  bottom: "data"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 1024
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+  bottom_mlu_dtype {
+    type: DT_FIX8
+    position: -6
+  }
+  blobs_dtype {
+    type: DT_FIX8
+    position: -7
+  }
+}

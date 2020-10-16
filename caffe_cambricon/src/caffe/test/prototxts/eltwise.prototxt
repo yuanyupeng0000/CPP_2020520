@@ -1,0 +1,26 @@
+name: "argmax"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 10 dim: 56 dim: 13 dim: 13 } }
+}
+layer {
+  name: "data2"
+  type: "Input"
+  top: "data2"
+  input_param { shape: { dim: 10 dim: 56 dim: 13 dim: 13 } }
+}
+
+layer {
+  name: "eltwise"
+  type: "Eltwise"
+  bottom: "data"
+  bottom: "data2"
+  top: "eltwise"
+  eltwise_param {
+     operation: SUM
+     coeff: 0.5
+     coeff: -1
+  }
+}

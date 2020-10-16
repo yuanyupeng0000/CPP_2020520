@@ -1,0 +1,1 @@
+/opt/cambricon/caffe/tools/caffe genoff -model /opt/cambricon/models/yolov3_int8.prototxt -weights /opt/cambricon/models/yolov3_.caffemodel -mcore MLU270 -mname /opt/cambricon/models/yolov3_int8_16_16 -core_number 16 -batchsize 16 -simple_compile 1

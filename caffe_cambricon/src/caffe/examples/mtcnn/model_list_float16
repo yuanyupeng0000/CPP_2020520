@@ -1,0 +1,12 @@
+pnet ./det1_384x216.cambricon
+pnet ./det1_288x162.cambricon
+pnet ./det1_216x122.cambricon
+pnet ./det1_162x92.cambricon
+pnet ./det1_122x69.cambricon
+pnet ./det1_92x52.cambricon
+pnet ./det1_69x39.cambricon
+pnet ./det1_52x29.cambricon
+pnet ./det1_39x22.cambricon
+pnet ./det1_29x17.cambricon
+rnet ./det2_16batch.cambricon
+onet ./det3_16batch.cambricon

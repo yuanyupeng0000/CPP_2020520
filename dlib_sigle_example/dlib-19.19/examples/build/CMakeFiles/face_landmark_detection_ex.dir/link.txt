@@ -1,0 +1,1 @@
+/usr/bin/c++   -O3 -DNDEBUG   CMakeFiles/face_landmark_detection_ex.dir/face_landmark_detection_ex.cpp.o  -o face_landmark_detection_ex -rdynamic dlib_build/libdlib.a -lpthread -lnsl -lSM -lICE -lX11 -lXext -lpng -lz -ljpeg -lopenblas 

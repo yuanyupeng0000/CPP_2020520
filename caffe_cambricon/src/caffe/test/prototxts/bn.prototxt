@@ -1,0 +1,17 @@
+name: "bn"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 64 dim: 237 dim: 237 } }
+}
+
+layer {
+  name: "pspbn"
+  type: "BN"
+  bottom: "data"
+  top: "bn"
+  bn_param {
+    eps: 1e-5
+  }
+}

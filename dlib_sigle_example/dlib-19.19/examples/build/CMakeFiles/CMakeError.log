@@ -1,0 +1,97 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /data/github_repos/CPP_2020520/dlib_sigle_example/dlib-19.19/examples/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_33a6b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_33a6b.dir/build.make CMakeFiles/cmTC_33a6b.dir/build
+make[1]: Entering directory '/data/github_repos/CPP_2020520/dlib_sigle_example/dlib-19.19/examples/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_33a6b.dir/CheckSymbolExists.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_33a6b.dir/CheckSymbolExists.c.o   -c /data/github_repos/CPP_2020520/dlib_sigle_example/dlib-19.19/examples/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_33a6b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_33a6b.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_33a6b.dir/CheckSymbolExists.c.o  -o cmTC_33a6b -rdynamic 
+CMakeFiles/cmTC_33a6b.dir/CheckSymbolExists.c.o：在函数‘main’中：
+CheckSymbolExists.c:(.text+0x16)：对‘pthread_create’未定义的引用
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_33a6b.dir/build.make:97: recipe for target 'cmTC_33a6b' failed
+make[1]: *** [cmTC_33a6b] Error 1
+make[1]: Leaving directory '/data/github_repos/CPP_2020520/dlib_sigle_example/dlib-19.19/examples/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_33a6b/fast' failed
+make: *** [cmTC_33a6b/fast] Error 2
+
+File /data/github_repos/CPP_2020520/dlib_sigle_example/dlib-19.19/examples/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /data/github_repos/CPP_2020520/dlib_sigle_example/dlib-19.19/examples/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_0add5/fast"
+/usr/bin/make -f CMakeFiles/cmTC_0add5.dir/build.make CMakeFiles/cmTC_0add5.dir/build
+make[1]: Entering directory '/data/github_repos/CPP_2020520/dlib_sigle_example/dlib-19.19/examples/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0add5.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_0add5.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_0add5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0add5.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_0add5.dir/CheckFunctionExists.c.o  -o cmTC_0add5 -rdynamic -lpthreads 
+/usr/bin/ld: 找不到 -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_0add5.dir/build.make:97: recipe for target 'cmTC_0add5' failed
+make[1]: *** [cmTC_0add5] Error 1
+make[1]: Leaving directory '/data/github_repos/CPP_2020520/dlib_sigle_example/dlib-19.19/examples/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_0add5/fast' failed
+make: *** [cmTC_0add5/fast] Error 2
+
+
+Determining if the function sgesv exists failed with the following output:
+Change Dir: /data/github_repos/CPP_2020520/dlib_sigle_example/dlib-19.19/examples/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_73344/fast"
+/usr/bin/make -f CMakeFiles/cmTC_73344.dir/build.make CMakeFiles/cmTC_73344.dir/build
+make[1]: Entering directory '/data/github_repos/CPP_2020520/dlib_sigle_example/dlib-19.19/examples/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_73344.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=sgesv   -o CMakeFiles/cmTC_73344.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_73344
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_73344.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sgesv    CMakeFiles/cmTC_73344.dir/CheckFunctionExists.c.o  -o cmTC_73344 -rdynamic 
+CMakeFiles/cmTC_73344.dir/CheckFunctionExists.c.o：在函数‘main’中：
+CheckFunctionExists.c:(.text+0x15)：对‘sgesv’未定义的引用
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_73344.dir/build.make:97: recipe for target 'cmTC_73344' failed
+make[1]: *** [cmTC_73344] Error 1
+make[1]: Leaving directory '/data/github_repos/CPP_2020520/dlib_sigle_example/dlib-19.19/examples/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_73344/fast' failed
+make: *** [cmTC_73344/fast] Error 2
+
+
+Determining if the function sgesv_ exists failed with the following output:
+Change Dir: /data/github_repos/CPP_2020520/dlib_sigle_example/dlib-19.19/examples/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_331dd/fast"
+/usr/bin/make -f CMakeFiles/cmTC_331dd.dir/build.make CMakeFiles/cmTC_331dd.dir/build
+make[1]: Entering directory '/data/github_repos/CPP_2020520/dlib_sigle_example/dlib-19.19/examples/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_331dd.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=sgesv_   -o CMakeFiles/cmTC_331dd.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_331dd
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_331dd.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sgesv_    CMakeFiles/cmTC_331dd.dir/CheckFunctionExists.c.o  -o cmTC_331dd -rdynamic 
+CMakeFiles/cmTC_331dd.dir/CheckFunctionExists.c.o：在函数‘main’中：
+CheckFunctionExists.c:(.text+0x15)：对‘sgesv_’未定义的引用
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_331dd.dir/build.make:97: recipe for target 'cmTC_331dd' failed
+make[1]: *** [cmTC_331dd] Error 1
+make[1]: Leaving directory '/data/github_repos/CPP_2020520/dlib_sigle_example/dlib-19.19/examples/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_331dd/fast' failed
+make: *** [cmTC_331dd/fast] Error 2
+
+

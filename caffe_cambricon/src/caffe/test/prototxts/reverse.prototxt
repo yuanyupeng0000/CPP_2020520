@@ -1,0 +1,14 @@
+name: "reverse"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 2 dim: 8 dim: 4 dim: 4 } }
+}
+
+layer {
+  name: "reverse"
+  type: "Reverse"
+  top: "reverse"
+  bottom: "data"
+}

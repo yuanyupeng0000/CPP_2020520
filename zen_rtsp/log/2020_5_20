@@ -11175,3 +11175,296 @@
 
 [17:19:36][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
 
+[17:57:45][info](main.c:24)====>.............programe start.............
+[17:57:45][info](fvdmysql/fvdmysql.c:67)====>Error connecting to Mysql: Access denied for user 'root'@'localhost' (using password: YES)
+
+[17:57:45][info](client_net.c:1114)====>checkaddr: 智能交通路口1 loglevel: 3
+[17:57:46][info](camera_service.c:680)====>camera_open
+[17:57:46][info](camera_service.c:265)====>process_fun_for_rtsp
+[17:57:46][info](common.c:1216)====>./res/ntpclient -s -i 3600 -g 1 -p 10009 -h 192.168.1.4 >/dev/null 2>&1  &
+[17:57:47][info](camera_service.c:350)====>process_fun_for_rtsp2
+[17:57:48][info](camera_service.c:749)====>cam_info[0]: creating thread
+[17:57:49][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:30 / 34 list: 0 
+
+[17:57:49][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:49][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:49][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:49][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:50][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:31 / 31 list: 0 
+
+[17:57:50][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:50][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:50][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:50][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:51][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:21 / 21 list: 0 
+
+[17:57:51][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:51][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:51][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:51][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:52][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:16 / 15 list: 0 
+
+[17:57:52][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:52][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:52][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:52][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:53][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:14 / 15 list: 0 
+
+[17:57:53][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:53][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:53][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:53][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:54][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:16 / 15 list: 0 
+
+[17:57:54][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:54][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:54][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:54][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:55][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:57:55][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:55][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:55][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:55][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:56][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:57:56][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:56][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:56][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:56][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:57][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:14 / 15 list: 0 
+
+[17:57:57][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:57][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:57][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:57][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:58][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:16 / 15 list: 0 
+
+[17:57:58][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:58][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:58][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:58][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:59][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:57:59][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:59][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:59][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:57:59][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:0][info](fvdmysql/fvdmysql.c:67)====>Error connecting to Mysql: Access denied for user 'root'@'localhost' (using password: YES)
+
+[17:58:0][info](fvdmysql/fvdmysql.c:67)====>Error connecting to Mysql: Access denied for user 'root'@'localhost' (using password: YES)
+
+[17:58:0][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 16 list: 0 
+
+[17:58:0][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:0][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:0][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:0][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:1][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:58:1][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:1][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:1][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:1][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:2][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:58:2][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:2][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:2][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:2][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:3][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:58:3][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:3][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:3][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:3][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:4][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:58:4][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:4][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:4][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:4][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:5][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:58:5][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:5][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:5][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:5][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:6][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:58:6][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:6][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:6][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:6][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:7][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:58:7][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:7][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:7][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:7][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:8][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:58:8][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:8][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:8][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:8][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:9][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:58:9][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:9][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:9][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:9][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:10][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:58:10][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:10][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:10][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:10][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:11][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:58:11][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:11][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:11][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:11][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:12][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:58:12][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:12][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:12][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:12][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:13][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:16 / 15 list: 0 
+
+[17:58:13][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:13][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:13][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:13][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:14][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:14 / 15 list: 0 
+
+[17:58:14][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:14][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:14][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:14][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:15][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:58:15][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:15][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:15][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:15][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:16][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:15 / 15 list: 0 
+
+[17:58:16][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:16][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:16][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+
+[17:58:16][info](camera_service.c:930)====>watchdog dog for cam 0 , fp10s:0 / 0 list: 0 
+

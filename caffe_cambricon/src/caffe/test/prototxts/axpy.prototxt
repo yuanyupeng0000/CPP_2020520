@@ -1,0 +1,29 @@
+name: "axpy"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 3 dim: 32 dim: 1 dim: 1 } }
+}
+
+layer {
+  name: "data2"
+  type: "Input"
+  top: "data1"
+  input_param { shape: { dim: 3 dim: 32 dim: 2 dim:2 } }
+}
+layer {
+  name: "data2"
+  type: "Input"
+  top: "data2"
+  input_param { shape: { dim: 3 dim: 32 dim: 2 dim:2 } }
+}
+
+layer {
+  name: "axpy"
+  type: "Axpy"
+  top: "axpy"
+  bottom: "data"
+  bottom: "data1"
+  bottom: "data2"
+}

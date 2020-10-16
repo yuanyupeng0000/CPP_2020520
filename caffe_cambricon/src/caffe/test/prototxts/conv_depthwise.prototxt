@@ -1,0 +1,23 @@
+name: "Convolution"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param { shape: { dim: 1 dim: 54 dim: 56 dim: 56 } }
+}
+layer {
+  name: "resx1_conv2"
+  type: "ConvolutionDepthwise"
+  bottom: "data"
+  top: "resx1_conv2"
+  convolution_param {
+    num_output: 54
+    kernel_size: 3
+    stride: 2
+    pad: 1
+    bias_term: false
+    weight_filler {
+      type: "msra"
+    }
+  }
+}
