@@ -1,0 +1,159 @@
+/*
+ *  Video for Linux Two controls header file
+ *
+ *  Copyright (C) 1999-2012 the contributors
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  Alternatively you can redistribute this file under the terms of the
+ *  BSD license as stated below:
+ *
+ *  Redistribution and use in source and binary forms, with or without
+ *  modification, are permitted provided that the following conditions
+ *  are met:
+ *  1. Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ *  2. Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions and the following disclaimer in
+ *     the documentation and/or other materials provided with the
+ *     distribution.
+ *  3. The names of its contributors may not be used to endorse or promote
+ *     products derived from this software without specific prior written
+ *     permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+ *  TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ *  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ *  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ *  The contents of this header was split off from videodev2.h. All control
+ *  definitions should be added to this header, which is included by
+ *  videodev2.h.
+ */
+
+#ifndef __LINUX_V4L2_CONTROLS_H
+#define __LINUX_V4L2_CONTROLS_H
+
+#include <linux/types.h>
+
+/* Control classes */
+#define V4L2_CTRL_CLASS_USER        0x00980000  /* Old-style 'user' controls */
+#define V4L2_CTRL_CLASS_MPEG        0x00990000  /* MPEG-compression controls */
+#define V4L2_CTRL_CLASS_CAMERA      0x009a0000  /* Camera class controls */
+#define V4L2_CTRL_CLASS_FM_TX       0x009b0000  /* FM Modulator controls */
+#define V4L2_CTRL_CLASS_FLASH       0x009c0000  /* Camera flash controls */
+#define V4L2_CTRL_CLASS_JPEG        0x009d0000  /* JPEG-compression controls */
+#define V4L2_CTRL_CLASS_IMAGE_SOURCE    0x009e0000  /* Image source controls */
+#define V4L2_CTRL_CLASS_IMAGE_PROC  0x009f0000  /* Image processing controls */
+#define V4L2_CTRL_CLASS_DV      0x00a00000  /* Digital Video controls */
+#define V4L2_CTRL_CLASS_FM_RX       0x00a10000  /* FM Receiver controls */
+#define V4L2_CTRL_CLASS_RF_TUNER    0x00a20000  /* RF tuner controls */
+#define V4L2_CTRL_CLASS_DETECT      0x00a30000  /* Detection controls */
+
+/* User-class control IDs */
+
+#define V4L2_CID_BASE           (V4L2_CTRL_CLASS_USER | 0x900)
+#define V4L2_CID_USER_BASE      V4L2_CID_BASE
+#define V4L2_CID_USER_CLASS         (V4L2_CTRL_CLASS_USER | 1)
+#define V4L2_CID_BRIGHTNESS     (V4L2_CID_BASE+0)
+#define V4L2_CID_CONTRAST       (V4L2_CID_BASE+1)
+#define V4L2_CID_SATURATION     (V4L2_CID_BASE+2)
+#define V4L2_CID_HUE            (V4L2_CID_BASE+3)
+#define V4L2_CID_AUDIO_VOLUME       (V4L2_CID_BASE+5)
+#define V4L2_CID_AUDIO_BALANCE      (V4L2_CID_BASE+6)
+#define V4L2_CID_AUDIO_BASS     (V4L2_CID_BASE+7)
+#define V4L2_CID_AUDIO_TREBLE       (V4L2_CID_BASE+8)
+#define V4L2_CID_AUDIO_MUTE     (V4L2_CID_BASE+9)
+#define V4L2_CID_AUDIO_LOUDNESS     (V4L2_CID_BASE+10)
+#define V4L2_CID_BLACK_LEVEL        (V4L2_CID_BASE+11) /* Deprecated */
+#define V4L2_CID_AUTO_WHITE_BALANCE (V4L2_CID_BASE+12)
+#define V4L2_CID_DO_WHITE_BALANCE   (V4L2_CID_BASE+13)
+#define V4L2_CID_RED_BALANCE        (V4L2_CID_BASE+14)
+#define V4L2_CID_BLUE_BALANCE       (V4L2_CID_BASE+15)
+#define V4L2_CID_GAMMA          (V4L2_CID_BASE+16)
+#define V4L2_CID_WHITENESS      (V4L2_CID_GAMMA) /* Deprecated */
+#define V4L2_CID_EXPOSURE       (V4L2_CID_BASE+17)
+#define V4L2_CID_AUTOGAIN       (V4L2_CID_BASE+18)
+#define V4L2_CID_GAIN           (V4L2_CID_BASE+19)
+#define V4L2_CID_HFLIP          (V4L2_CID_BASE+20)
+#define V4L2_CID_VFLIP          (V4L2_CID_BASE+21)
+
+#define V4L2_CID_POWER_LINE_FREQUENCY   (V4L2_CID_BASE+24)
+enum v4l2_power_line_frequency {
+    V4L2_CID_POWER_LINE_FREQUENCY_DISABLED  = 0,
+    V4L2_CID_POWER_LINE_FREQUENCY_50HZ  = 1,
+    V4L2_CID_POWER_LINE_FREQUENCY_60HZ  = 2,
+    V4L2_CID_POWER_LINE_FREQUENCY_AUTO  = 3,
+};
+#define V4L2_CID_HUE_AUTO           (V4L2_CID_BASE+25)
+#define V4L2_CID_WHITE_BALANCE_TEMPERATURE  (V4L2_CID_BASE+26)
+#define V4L2_CID_SHARPNESS          (V4L2_CID_BASE+27)
+#define V4L2_CID_BACKLIGHT_COMPENSATION     (V4L2_CID_BASE+28)
+#define V4L2_CID_CHROMA_AGC                     (V4L2_CID_BASE+29)
+#define V4L2_CID_COLOR_KILLER                   (V4L2_CID_BASE+30)
+#define V4L2_CID_COLORFX            (V4L2_CID_BASE+31)
+enum v4l2_colorfx {
+    V4L2_COLORFX_NONE           = 0,
+    V4L2_COLORFX_BW             = 1,
+    V4L2_COLORFX_SEPIA          = 2,
+    V4L2_COLORFX_NEGATIVE           = 3,
+    V4L2_COLORFX_EMBOSS         = 4,
+    V4L2_COLORFX_SKETCH         = 5,
+    V4L2_COLORFX_SKY_BLUE           = 6,
+    V4L2_COLORFX_GRASS_GREEN        = 7,
+    V4L2_COLORFX_SKIN_WHITEN        = 8,
+    V4L2_COLORFX_VIVID          = 9,
+    V4L2_COLORFX_AQUA           = 10,
+    V4L2_COLORFX_ART_FREEZE         = 11,
+    V4L2_COLORFX_SILHOUETTE         = 12,
+    V4L2_COLORFX_SOLARIZATION       = 13,
+    V4L2_COLORFX_ANTIQUE            = 14,
+    V4L2_COLORFX_SET_CBCR           = 15,
+};
+#define V4L2_CID_AUTOBRIGHTNESS         (V4L2_CID_BASE+32)
+#define V4L2_CID_BAND_STOP_FILTER       (V4L2_CID_BASE+33)
+
+#define V4L2_CID_ROTATE             (V4L2_CID_BASE+34)
+#define V4L2_CID_BG_COLOR           (V4L2_CID_BASE+35)
+
+#define V4L2_CID_CHROMA_GAIN                    (V4L2_CID_BASE+36)
+
+#define V4L2_CID_ILLUMINATORS_1         (V4L2_CID_BASE+37)
+#define V4L2_CID_ILLUMINATORS_2         (V4L2_CID_BASE+38)
+
+#define V4L2_CID_MIN_BUFFERS_FOR_CAPTURE    (V4L2_CID_BASE+39)
+#define V4L2_CID_MIN_BUFFERS_FOR_OUTPUT     (V4L2_CID_BASE+40)
+
+#define V4L2_CID_ALPHA_COMPONENT        (V4L2_CID_BASE+41)
+#define V4L2_CID_COLORFX_CBCR           (V4L2_CID_BASE+42)
+
+/* last CID + 1 */
+#define V4L2_CID_LASTP1                         (V4L2_CID_BASE+43)
+
+/* USER-class private control IDs */
+
+/* The base for the meye driver controls. See linux/meye.h for the list
+ * of controls. We reserve 16 controls for this driver. */
+#define V4L2_CID_USER_MEYE_BASE         (V4L2_CID_USER_BASE + 0x1000)
+
+/* The base for the bttv driver controls.
+ * We reserve 32 controls for this driver. */
+#define V4L2_CID_USER_BTTV_BASE         (V4L2_CID_USER_BASE + 0x1010)
+
+
+/* The base

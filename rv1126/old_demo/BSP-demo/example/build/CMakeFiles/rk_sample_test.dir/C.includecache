@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/nfs-yyp-Rockchip-BSP-demo/BSP-demo/example/common/sample_common_isp.c
+
+/nfs-yyp-Rockchip-BSP-demo/BSP-demo/example/common/sample_double_cam_isp.c
+
