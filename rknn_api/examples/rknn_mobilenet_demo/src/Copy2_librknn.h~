@@ -1,0 +1,56 @@
+// Copyright 2020 Fuzhou Rockchip Electronics Co., Ltd. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+#include <assert.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <time.h>
+#include <signal.h>
+
+#include <string>
+
+#include "buffer.h"
+#include "encoder.h"
+#include "flow.h"
+#include "key_string.h"
+#include "media_config.h"
+#include "media_type.h"
+#include "message.h"
+#include "stream.h"
+#include "utils.h"
+
+static bool quit = false;
+static void sigterm_handler(int sig) {
+  fprintf(stderr, "signal %d\n", sig);
+  quit = true;
+}
+
+namespace easymedia {
+
+class TestReadFlow : public Flow {
+public:
+  TestReadFlow(const char *param);
+  virtual ~TestReadFlow();
+  static const char *GetFlowName() { return "read_flow_test"; }
+
+private:
+  void ReadThreadRun();
+
+  std::shared_ptr<Stream> fstream;
+  std::string path;
+  MediaBuffer::MemType mtype;
+  size_t read_size;
+  ImageInfo info;
+  int fps;
+  int loop_time;
+  bool loop;
+  std::thread *read_thread;
+};
+
+MediaBuffer::MemType StringToMemType(const char *s) {
+  if (s) {
+#ifdef LIBION
+    if (!strcmp(s, KEY_MEM_ION) || !strcmp(s, KEY_MEM_H

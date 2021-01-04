@@ -1,0 +1,6 @@
+#ifndef LIBRKNN_H
+#define LIBRKNN_H
+void rknn_test_alg();
+
+
+#endif //LIBRKNN_H

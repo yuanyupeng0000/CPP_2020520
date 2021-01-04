@@ -1,0 +1,797 @@
+;
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureProjLod(origSampler, coord, lod_bias);
+            ftmpG = textureProjLod(extraSampler1, coord, lod_bias);
+            ftmpB = textureProjLod(extraSampler2, coord, lod_bias);
+            ftmpA = textureProjLod(extraSampler3, coord, lod_bias);
+        }
+    }
+    else
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = texture(origSampler, coord.xyz);
+            ftmpG = texture(extraSampler1, coord.xyz);
+            ftmpB = texture(extraSampler2, coord.xyz);
+            ftmpA = texture(extraSampler3, coord.xyz);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = texture(origSampler, coord.xyz, lod_bias);
+            ftmpG = texture(extraSampler1, coord.xyz, lod_bias);
+            ftmpB = texture(extraSampler2, coord.xyz, lod_bias);
+            ftmpA = texture(extraSampler3, coord.xyz, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureLod(origSampler, coord.xyz, lod_bias);
+            ftmpG = textureLod(extraSampler1, coord.xyz, lod_bias);
+            ftmpB = textureLod(extraSampler2, coord.xyz, lod_bias);
+            ftmpA = textureLod(extraSampler3, coord.xyz, lod_bias);
+        }
+    }
+    return vec4(_txcvt_RGBA8_to_F32(ftmpR), _txcvt_RGBA8_to_F32(ftmpG),
+                _txcvt_RGBA8_to_F32(ftmpB), _txcvt_RGBA8_to_F32(ftmpA));
+}
+
+highp vec4 _txcvt_G32R32F_2_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bias,
+    int type,
+    sampler3D extraSampler1
+    )
+{
+    highp vec4 ftmpR;
+    highp vec4 ftmpG;
+    if (type == TYPE_PROJ)
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = textureProj(origSampler, coord);
+            ftmpG = textureProj(extraSampler1, coord);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = textureProj(origSampler, coord, lod_bias);
+            ftmpG = textureProj(extraSampler1, coord, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureProjLod(origSampler, coord, lod_bias);
+            ftmpG = textureProjLod(extraSampler1, coord, lod_bias);
+        }
+    }
+    else
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = texture(origSampler, coord.xyz);
+            ftmpG = texture(extraSampler1, coord.xyz);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = texture(origSampler, coord.xyz, lod_bias);
+            ftmpG = texture(extraSampler1, coord.xyz, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureLod(origSampler, coord.xyz, lod_bias);
+            ftmpG = textureLod(extraSampler1, coord.xyz, lod_bias);
+        }
+    }
+    return vec4(_txcvt_RGBA8_to_F32(ftmpR), _txcvt_RGBA8_to_F32(ftmpG), 0.0, 1.0);
+}
+
+highp vec4 _txcvt_R32F_1_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bias,
+    int type
+    )
+{
+    highp vec4 ftmp;
+    if (type == TYPE_PROJ)
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmp = textureProj(origSampler, coord);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmp = textureProj(origSampler, coord, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmp = textureProjLod(origSampler, coord, lod_bias);
+        }
+    }
+    else
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmp = texture(origSampler, coord.xyz);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmp = texture(origSampler, coord.xyz, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmp = textureLod(origSampler, coord.xyz, lod_bias);
+        }
+    }
+    return vec4(_txcvt_RGBA8_to_F32(ftmp), 0.0, 0.0, 1.0);
+}
+
+highp ivec4 _txcvt_A32B32G32R32I_4_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bias,
+    int type,
+    sampler3D extraSampler1,
+    sampler3D extraSampler2,
+    sampler3D extraSampler3
+    )
+{
+    highp vec4 ftmpR;
+    highp vec4 ftmpG;
+    highp vec4 ftmpB;
+    highp vec4 ftmpA;
+    if (type == TYPE_PROJ)
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = textureProj(origSampler, coord);
+            ftmpG = textureProj(extraSampler1, coord);
+            ftmpB = textureProj(extraSampler2, coord);
+            ftmpA = textureProj(extraSampler3, coord);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = textureProj(origSampler, coord, lod_bias);
+            ftmpG = textureProj(extraSampler1, coord, lod_bias);
+            ftmpB = textureProj(extraSampler2, coord, lod_bias);
+            ftmpA = textureProj(extraSampler3, coord, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureProjLod(origSampler, coord, lod_bias);
+            ftmpG = textureProjLod(extraSampler1, coord, lod_bias);
+            ftmpB = textureProjLod(extraSampler2, coord, lod_bias);
+            ftmpA = textureProjLod(extraSampler3, coord, lod_bias);
+        }
+    }
+    else
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = texture(origSampler, coord.xyz);
+            ftmpG = texture(extraSampler1, coord.xyz);
+            ftmpB = texture(extraSampler2, coord.xyz);
+            ftmpA = texture(extraSampler3, coord.xyz);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = texture(origSampler, coord.xyz, lod_bias);
+            ftmpG = texture(extraSampler1, coord.xyz, lod_bias);
+            ftmpB = texture(extraSampler2, coord.xyz, lod_bias);
+            ftmpA = texture(extraSampler3, coord.xyz, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureLod(origSampler, coord.xyz, lod_bias);
+            ftmpG = textureLod(extraSampler1, coord.xyz, lod_bias);
+            ftmpB = textureLod(extraSampler2, coord.xyz, lod_bias);
+            ftmpA = textureLod(extraSampler3, coord.xyz, lod_bias);
+        }
+    }
+    return ivec4(_txcvt_RGBA8_to_I32(ftmpR), _txcvt_RGBA8_to_I32(ftmpG),
+                 _txcvt_RGBA8_to_I32(ftmpB), _txcvt_RGBA8_to_I32(ftmpA));
+}
+
+highp ivec4 _txcvt_B32G32R32I_3_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bias,
+    int type,
+    sampler3D extraSampler1,
+    sampler3D extraSampler2
+    )
+{
+    highp vec4 ftmpR;
+    highp vec4 ftmpG;
+    highp vec4 ftmpB;
+    if (type == TYPE_PROJ)
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = textureProj(origSampler, coord);
+            ftmpG = textureProj(extraSampler1, coord);
+            ftmpB = textureProj(extraSampler2, coord);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = textureProj(origSampler, coord, lod_bias);
+            ftmpG = textureProj(extraSampler1, coord, lod_bias);
+            ftmpB = textureProj(extraSampler2, coord, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureProjLod(origSampler, coord, lod_bias);
+            ftmpG = textureProjLod(extraSampler1, coord, lod_bias);
+            ftmpB = textureProjLod(extraSampler2, coord, lod_bias);
+        }
+    }
+    else
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = texture(origSampler, coord.xyz);
+            ftmpG = texture(extraSampler1, coord.xyz);
+            ftmpB = texture(extraSampler2, coord.xyz);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = texture(origSampler, coord.xyz, lod_bias);
+            ftmpG = texture(extraSampler1, coord.xyz, lod_bias);
+            ftmpB = texture(extraSampler2, coord.xyz, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureLod(origSampler, coord.xyz, lod_bias);
+            ftmpG = textureLod(extraSampler1, coord.xyz, lod_bias);
+            ftmpB = textureLod(extraSampler2, coord.xyz, lod_bias);
+        }
+    }
+    return ivec4(_txcvt_RGBA8_to_I32(ftmpR), _txcvt_RGBA8_to_I32(ftmpG),
+                 _txcvt_RGBA8_to_I32(ftmpB), 1);
+}
+
+highp ivec4 _txcvt_G32R32I_2_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bias,
+    int type,
+    sampler3D extraSampler1
+    )
+{
+    highp vec4 ftmpR;
+    highp vec4 ftmpG;
+    if (type == TYPE_PROJ)
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = textureProj(origSampler, coord);
+            ftmpG = textureProj(extraSampler1, coord);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = textureProj(origSampler, coord, lod_bias);
+            ftmpG = textureProj(extraSampler1, coord, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureProjLod(origSampler, coord, lod_bias);
+            ftmpG = textureProjLod(extraSampler1, coord, lod_bias);
+        }
+    }
+    else
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = texture(origSampler, coord.xyz);
+            ftmpG = texture(extraSampler1, coord.xyz);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = texture(origSampler, coord.xyz, lod_bias);
+            ftmpG = texture(extraSampler1, coord.xyz, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureLod(origSampler, coord.xyz, lod_bias);
+            ftmpG = textureLod(extraSampler1, coord.xyz, lod_bias);
+        }
+    }
+    return ivec4(_txcvt_RGBA8_to_I32(ftmpR), _txcvt_RGBA8_to_I32(ftmpG), 0, 1);
+}
+
+highp uvec4 _txcvt_A32B32G32R32UI_4_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bias,
+    int type,
+    sampler3D extraSampler1,
+    sampler3D extraSampler2,
+    sampler3D extraSampler3
+    )
+{
+    highp vec4 ftmpR;
+    highp vec4 ftmpG;
+    highp vec4 ftmpB;
+    highp vec4 ftmpA;
+    if (type == TYPE_PROJ)
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = textureProj(origSampler, coord);
+            ftmpG = textureProj(extraSampler1, coord);
+            ftmpB = textureProj(extraSampler2, coord);
+            ftmpA = textureProj(extraSampler3, coord);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = textureProj(origSampler, coord, lod_bias);
+            ftmpG = textureProj(extraSampler1, coord, lod_bias);
+            ftmpB = textureProj(extraSampler2, coord, lod_bias);
+            ftmpA = textureProj(extraSampler3, coord, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureProjLod(origSampler, coord, lod_bias);
+            ftmpG = textureProjLod(extraSampler1, coord, lod_bias);
+            ftmpB = textureProjLod(extraSampler2, coord, lod_bias);
+            ftmpA = textureProjLod(extraSampler3, coord, lod_bias);
+        }
+    }
+    else
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = texture(origSampler, coord.xyz);
+            ftmpG = texture(extraSampler1, coord.xyz);
+            ftmpB = texture(extraSampler2, coord.xyz);
+            ftmpA = texture(extraSampler3, coord.xyz);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = texture(origSampler, coord.xyz, lod_bias);
+            ftmpG = texture(extraSampler1, coord.xyz, lod_bias);
+            ftmpB = texture(extraSampler2, coord.xyz, lod_bias);
+            ftmpA = texture(extraSampler3, coord.xyz, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureLod(origSampler, coord.xyz, lod_bias);
+            ftmpG = textureLod(extraSampler1, coord.xyz, lod_bias);
+            ftmpB = textureLod(extraSampler2, coord.xyz, lod_bias);
+            ftmpA = textureLod(extraSampler3, coord.xyz, lod_bias);
+        }
+    }
+    return uvec4(_txcvt_RGBA8_to_UI32(ftmpR), _txcvt_RGBA8_to_UI32(ftmpG),
+                 _txcvt_RGBA8_to_UI32(ftmpB), _txcvt_RGBA8_to_UI32(ftmpA));
+}
+
+highp uvec4 _txcvt_B32G32R32UI_3_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bias,
+    int type,
+    sampler3D extraSampler1,
+    sampler3D extraSampler2
+    )
+{
+    highp vec4 ftmpR;
+    highp vec4 ftmpG;
+    highp vec4 ftmpB;
+    if (type == TYPE_PROJ)
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = textureProj(origSampler, coord);
+            ftmpG = textureProj(extraSampler1, coord);
+            ftmpB = textureProj(extraSampler2, coord);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = textureProj(origSampler, coord, lod_bias);
+            ftmpG = textureProj(extraSampler1, coord, lod_bias);
+            ftmpB = textureProj(extraSampler2, coord, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureProjLod(origSampler, coord, lod_bias);
+            ftmpG = textureProjLod(extraSampler1, coord, lod_bias);
+            ftmpB = textureProjLod(extraSampler2, coord, lod_bias);
+        }
+    }
+    else
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = texture(origSampler, coord.xyz);
+            ftmpG = texture(extraSampler1, coord.xyz);
+            ftmpB = texture(extraSampler2, coord.xyz);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = texture(origSampler, coord.xyz, lod_bias);
+            ftmpG = texture(extraSampler1, coord.xyz, lod_bias);
+            ftmpB = texture(extraSampler2, coord.xyz, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureLod(origSampler, coord.xyz, lod_bias);
+            ftmpG = textureLod(extraSampler1, coord.xyz, lod_bias);
+            ftmpB = textureLod(extraSampler2, coord.xyz, lod_bias);
+        }
+    }
+    return uvec4(_txcvt_RGBA8_to_UI32(ftmpR), _txcvt_RGBA8_to_UI32(ftmpG),
+                 _txcvt_RGBA8_to_UI32(ftmpB), 1u);
+}
+
+highp uvec4 _txcvt_G32R32UI_2_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bias,
+    int type,
+    sampler3D extraSampler1
+    )
+{
+    highp vec4 ftmpR;
+    highp vec4 ftmpG;
+    if (type == TYPE_PROJ)
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = textureProj(origSampler, coord);
+            ftmpG = textureProj(extraSampler1, coord);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = textureProj(origSampler, coord, lod_bias);
+            ftmpG = textureProj(extraSampler1, coord, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureProjLod(origSampler, coord, lod_bias);
+            ftmpG = textureProjLod(extraSampler1, coord, lod_bias);
+        }
+    }
+    else
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = texture(origSampler, coord.xyz);
+            ftmpG = texture(extraSampler1, coord.xyz);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = texture(origSampler, coord.xyz, lod_bias);
+            ftmpG = texture(extraSampler1, coord.xyz, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureLod(origSampler, coord.xyz, lod_bias);
+            ftmpG = textureLod(extraSampler1, coord.xyz, lod_bias);
+        }
+    }
+    return uvec4(_txcvt_RGBA8_to_UI32(ftmpR), _txcvt_RGBA8_to_UI32(ftmpG), 0u, 1u);
+}
+
+highp vec4 _txcvt_X32B32G32R32F_4_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bias,
+    int type,
+    sampler3D extraSampler1,
+    sampler3D extraSampler2,
+    sampler3D extraSampler3
+    )
+{
+    highp vec4 ftmpR;
+    highp vec4 ftmpG;
+    highp vec4 ftmpB;
+    if (type == TYPE_PROJ)
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = textureProj(origSampler, coord);
+            ftmpG = textureProj(extraSampler1, coord);
+            ftmpB = textureProj(extraSampler2, coord);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = textureProj(origSampler, coord, lod_bias);
+            ftmpG = textureProj(extraSampler1, coord, lod_bias);
+            ftmpB = textureProj(extraSampler2, coord, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureProjLod(origSampler, coord, lod_bias);
+            ftmpG = textureProjLod(extraSampler1, coord, lod_bias);
+            ftmpB = textureProjLod(extraSampler2, coord, lod_bias);
+        }
+    }
+    else
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpR = texture(origSampler, coord.xyz);
+            ftmpG = texture(extraSampler1, coord.xyz);
+            ftmpB = texture(extraSampler2, coord.xyz);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpR = texture(origSampler, coord.xyz, lod_bias);
+            ftmpG = texture(extraSampler1, coord.xyz, lod_bias);
+            ftmpB = texture(extraSampler2, coord.xyz, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpR = textureLod(origSampler, coord.xyz, lod_bias);
+            ftmpG = textureLod(extraSampler1, coord.xyz, lod_bias);
+            ftmpB = textureLod(extraSampler2, coord.xyz, lod_bias);
+        }
+    }
+    return vec4(_txcvt_RGBA8_to_F32(ftmpR), _txcvt_RGBA8_to_F32(ftmpG),
+                 _txcvt_RGBA8_to_F32(ftmpB), 1.0);
+}
+
+mediump vec4 _txcvt_A16B16G16R16F_2_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bias,
+    int type,
+    sampler3D extraSampler1
+    )
+{
+    mediump vec4 ftmpRG;
+    mediump vec4 ftmpBA;
+    if (type == TYPE_PROJ)
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpRG = textureProj(origSampler, coord);
+            ftmpBA = textureProj(extraSampler1, coord);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpRG = textureProj(origSampler, coord, lod_bias);
+            ftmpBA = textureProj(extraSampler1, coord, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpRG = textureProjLod(origSampler, coord, lod_bias);
+            ftmpBA = textureProjLod(extraSampler1, coord, lod_bias);
+        }
+    }
+    else
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpRG = texture(origSampler, coord.xyz);
+            ftmpBA = texture(extraSampler1, coord.xyz);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpRG = texture(origSampler, coord.xyz, lod_bias);
+            ftmpBA = texture(extraSampler1, coord.xyz, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpRG = textureLod(origSampler, coord.xyz, lod_bias);
+            ftmpBA = textureLod(extraSampler1, coord.xyz, lod_bias);
+        }
+    }
+    return vec4(_txcvt_RGBA8_to_F16_vec2(ftmpRG), _txcvt_RGBA8_to_F16_vec2(ftmpBA));
+}
+
+mediump vec4 _txcvt_B16G16R16F_2_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bias,
+    int type,
+    sampler3D extraSampler1
+    )
+{
+    mediump vec4 color;
+    color = _txcvt_A16B16G16R16F_2_A8R8G8B8(origSampler, coord, mod, lod_bias, type, extraSampler1);
+    color.a = 1.0;
+    return color;
+}
+
+highp ivec4 _txcvt_A16B16G16R16I_2_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bias,
+    int type,
+    sampler3D extraSampler1
+    )
+{
+    highp vec4 ftmpRG;
+    highp vec4 ftmpBA;
+    if (type == TYPE_PROJ)
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpRG = textureProj(origSampler, coord);
+            ftmpBA = textureProj(extraSampler1, coord);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpRG = textureProj(origSampler, coord, lod_bias);
+            ftmpBA = textureProj(extraSampler1, coord, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpRG = textureProjLod(origSampler, coord, lod_bias);
+            ftmpBA = textureProjLod(extraSampler1, coord, lod_bias);
+        }
+    }
+    else
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpRG = texture(origSampler, coord.xyz);
+            ftmpBA = texture(extraSampler1, coord.xyz);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpRG = texture(origSampler, coord.xyz, lod_bias);
+            ftmpBA = texture(extraSampler1, coord.xyz, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpRG = textureLod(origSampler, coord.xyz, lod_bias);
+            ftmpBA = textureLod(extraSampler1, coord.xyz, lod_bias);
+        }
+    }
+    return ivec4(_txcvt_RGBA8_to_I16_vec2(ftmpRG), _txcvt_RGBA8_to_I16_vec2(ftmpBA));
+}
+
+highp ivec4 _txcvt_B16G16R16I_2_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bias,
+    int type,
+    sampler3D extraSampler1
+    )
+{
+    highp ivec4 color;
+    color = _txcvt_A16B16G16R16I_2_A8R8G8B8(origSampler, coord, mod, lod_bias, type, extraSampler1);
+    color.a = 1;
+    return color;
+}
+
+highp ivec4 _txcvt_G16R16I_1_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bias,
+    int type
+    )
+{
+    highp vec4 ftmp;
+    if (type == TYPE_PROJ)
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmp = textureProj(origSampler, coord);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmp = textureProj(origSampler, coord, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmp = textureProjLod(origSampler, coord, lod_bias);
+        }
+    }
+    else
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmp = texture(origSampler, coord.xyz);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmp = texture(origSampler, coord.xyz, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmp = textureLod(origSampler, coord.xyz, lod_bias);
+        }
+    }
+    return ivec4(_txcvt_RGBA8_to_I16_vec2(ftmp), 0, 1);
+}
+
+highp uvec4 _txcvt_A16B16G16R16UI_2_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bias,
+    int type,
+    sampler3D extraSampler1
+    )
+{
+    highp vec4 ftmpRG;
+    highp vec4 ftmpBA;
+    if (type == TYPE_PROJ)
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpRG = textureProj(origSampler, coord);
+            ftmpBA = textureProj(extraSampler1, coord);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpRG = textureProj(origSampler, coord, lod_bias);
+            ftmpBA = textureProj(extraSampler1, coord, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpRG = textureProjLod(origSampler, coord, lod_bias);
+            ftmpBA = textureProjLod(extraSampler1, coord, lod_bias);
+        }
+    }
+    else
+    {
+        if (mod == MOD_NONE)
+        {
+            ftmpRG = texture(origSampler, coord.xyz);
+            ftmpBA = texture(extraSampler1, coord.xyz);
+        }
+        else if (mod == MOD_BIAS)
+        {
+            ftmpRG = texture(origSampler, coord.xyz, lod_bias);
+            ftmpBA = texture(extraSampler1, coord.xyz, lod_bias);
+        }
+        else
+        {
+            /* MOD_LODBIAS */
+            ftmpRG = textureLod(origSampler, coord.xyz, lod_bias);
+            ftmpBA = textureLod(extraSampler1, coord.xyz, lod_bias);
+        }
+    }
+    return uvec4(_txcvt_RGBA8_to_UI16_vec2(ftmpRG), _txcvt_RGBA8_to_UI16_vec2(ftmpBA));
+}
+
+highp uvec4 _txcvt_B16G16R16UI_2_A8R8G8B8(
+    sampler3D origSampler,
+    vec4 coord,
+    int mod,
+    float lod_bi

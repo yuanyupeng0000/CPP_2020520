@@ -1,0 +1,13 @@
+/nfs-yyp-rknn/examples/rknn_mobilenet_demo/install/rknn_mobilenet_demo/./rknn_mobilenet_demo
+/nfs-yyp-rknn/examples/rknn_mobilenet_demo/install/rknn_mobilenet_demo/.//model/17_55_551.jpg
+/nfs-yyp-rknn/examples/rknn_mobilenet_demo/install/rknn_mobilenet_demo/.//model/cat_224x224.jpg
+/nfs-yyp-rknn/examples/rknn_mobilenet_demo/install/rknn_mobilenet_demo/.//model/dog_224x224.jpg
+/nfs-yyp-rknn/examples/rknn_mobilenet_demo/install/rknn_mobilenet_demo/.//model/mobilenet_v1_rk180x.rknn
+/nfs-yyp-rknn/examples/rknn_mobilenet_demo/install/rknn_mobilenet_demo/.//model/mobilenet_v1_rv1109_rv1126.rknn
+/nfs-yyp-rknn/examples/rknn_mobilenet_demo/install/rknn_mobilenet_demo/.//model/yolov3-ftiny-rom-caffe-qt16.rknn
+/nfs-yyp-rknn/examples/rknn_mobilenet_demo/install/rknn_mobilenet_demo/.//model/yolov3-generated-rknn-from-darknet-qt8.rknn
+/nfs-yyp-rknn/examples/rknn_mobilenet_demo/install/rknn_mobilenet_demo/.//model/yolov3-tiny-from-caffe-qt16-precompiled.rknn
+/nfs-yyp-rknn/examples/rknn_mobilenet_demo/install/rknn_mobilenet_demo/.//model/yolov3-tiny-from-caffe-qt8-3imgs-precompiled.rknn
+/nfs-yyp-rknn/examples/rknn_mobilenet_demo/install/rknn_mobilenet_demo/.//model/yolov3-tiny-from-caffe-qt8-precompiled.rknn
+/nfs-yyp-rknn/examples/rknn_mobilenet_demo/install/rknn_mobilenet_demo/.//model/yolov3-tiny-from-caffe-qtnone-precompiled.rknn
+/nfs-yyp-rknn/examples/rknn_mobilenet_demo/install/rknn_mobilenet_demo/lib/librknn_api.so

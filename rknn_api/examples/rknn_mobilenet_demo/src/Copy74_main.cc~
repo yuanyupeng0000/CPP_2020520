@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<matfile>
+    <header type="struct" size="[1 1]">
+        <code_xml_parse_version index="1" type="char" size="[1 6]">
+            v1.4.2
+        </code_xml_parse_version>
+        <creation_date index="1" type="char" size="[1 10]">
+            2020-10-15
+        </creation_date>
+        <creator index="1" type="char" size="[1 5]">
+            sandy
+        </creator>
+        <sensor_name index="1" type="char" size="[1 6]">
+            IMX307
+        </sensor_name>
+        <sample_name index="1" type="char" size="[1 10]">
+            CMK-OT0837
+        </sample_name>
+        <generator_version index="1" type="char" size="[1 6]">
+            v1.0.1
+        </generator_version>
+        <magic_code_version index="1" type="int" size="[1 1]">
+       	    [1089142]
+        </magic_code_version>
+    </header>
+    <sensor type="struct" size="[1 1]">
+        <AWB index="1" type="struct" size="[1 1]">
+            <wbBypass index="1" type="double" size="[1 1]">
+                [0 ]
+            </wbBypass>
+            <awbEnable index="1" type="double" size="[1 1]">
+                [1 ]
+            </awbEnable>
+            <MeasureParaV200 index="1" type="struct" size="[1 1]">
+                <Globals index="1" type="struct" size="[1 1]">
+                    <hdrFrameChoose index="1" type="struct" size="[1 1]">
+                        <mode index="1" type="double" size="[1 1]">
+                            [1 ]
+                        </mode>
+                        <frameChoose index="1" type="double" size="[1 1]">
+                            [1 ]
+                        </frameChoose>
+                    </hdrFrameChoose>
+                    <lscBypassEnable index="1" type="double" size="[1 1]">
+                        [0 ]
+                    </lscBypassEnable>
+                    <uvDetectionEnable index="1" type="double" size="[1 1]">
+                        [1 ]
+                    </uvDetectionEnable>
+                    <xyDetectionEnable index="1" type="double" size="[1 1]">
+                        [1 ]
+                    </xyDetectionEnable>
+                    <yuvDetectionEnable index="1" type="double" size="[1 1]">
+                        [1 ]
+                    </yuvDetectionEnable>
+                    <lsUsedForYuvDet index="1" type="cell" size="[1 7]">
+                        <cell index="1" type="struct" size="[1 1]">
+                            <name index="1" type="char" size="[1 1]">
+                                A
+                            </name>
+                        </cell>
+                        <cell index="1" type="struct" size="[1 1]">
+                            <name index="1" type="char" size="[1 3]">
+                                CWF
+                            </name>
+                        </cell>
+                        <cell index="1" type="struct" size="[1 1]">
+                            <name index="1" type="char" size="[1 3]">
+                                D65
+                            </name>
+                        </cell>
+                        <cell index="1" type="struct" size="[1 1]">
+                            <name index="1" type="char" size="[1 4]">
+                                TL84
+                            </name>
+                        </cell>
+                        <cell index="1" type="struct" size="[1 1]">
+                            <name index="1" type="char" size="[1 3]">
+                                D50
+                            </name>
+                        </cell>
+                        <cell index="1" type="struct" size="[1 1]">
+                            <name index="1" type="char" size="[1 2]">
+                                HZ
+                            </name>
+                        </cell>
+                        <cell index="1" type="struct" size="[1 1]">
+                            <name index="1" type="char" size="[1 3]">
+                                D75
+                            </name>
+                        </cell>
+                    </lsUsedForYuvDet>
+                    <downScaleMode index="1" type="double" size="[1 1]">
+                        [1 ]
+                    </downScaleMode>
+                    <blckMeasureMode index="1" type="double" size="[1 1]">
+                        [1 ]
+                    </blckMeasureMode>
+                    <measureWindow index="1" type="struct" size="[1 1]">
+                        <mode index="1" type="double" size="[1 1]">
+                            [0 ]
+                        </mode>
+                        <resAll index="1" type="cell" size="[1 2]">
+                            <cell index="6" type="struct" size="[1 1]">
+                                <resolution index="1" type="char" size="[1 9]">
+                                    1920x1080
+                                </resolution>
+                                <measureWindowSize index="1" type="double" size="[1 4]">
+                                    [0 0 1920 1080 ]
+                                </measureWindowSize>
+                            </cell>
+                            <cell index="6" type="struct" size="[1 1]">
+                                <resolution index="1" type="char" size="[1 9]">
+                                    2688x1520
+                                </resolution>
+                                <measureWindowSize index="1" type="double" size="[1 4]">
+                                    [0 0 2560 1440 ]
+                                </measureWindowSize>
+                            </cell>
+                        </resAll>
+                    </measureWindow>
+                    <multiWindowEnable index="1" type="double" size="[1 1]">
+                        [1 ]
+                    </multiWindowEnable>
+                    <limitRange index="1" type="struct" size="[1 1]">
+                        <Y index="1" type="double" size="[1 2]">
+                            [9 210 ]
+                        </Y>
+                        <R index="1" type="double" size="[1 2]">
+                            [6 230 ]
+                        </R>
+                        <G index="1" type="double" size="[1 2]">
+                            [9 230 ]
+                        </G>
+                        <B index="1" type="double" size="[1 2]">
+                            [6 230 ]
+                        </B>
+                    </limitRange>
+                    <pseudoLumWeight index="1" type="double" size="[1 3]">
+                        [0.333333 0.333341 0.333326 ]
+                    </pseudoLumWeight>
+                    <rotationMat index="1" type="double" size="[1 9]">
+                        [-0.551963 0.833869 -0.291140 0.833869 0.551963 0.469809 0.000000 0.000000 1.000000 ]
+                    </rotationMat>
+                    <multiwindow index="1" type="double" size="[8 4]">
+                        [0 0 0 0 
+                        0 0 0 0 
+                        0 0 0 0 
+                        0 0 0 0 
+                        0 0 0 0 
+                        0 0 0 0 
+                        0 0 0 0 
+                        0 0 0 0 ]
+                    </multiwindow>
+                    <excludeRange index="1" type="cell" size="[1 7]">
+                        <cell index="1" type="struct" size="[1 1]">
+                            <Domain index="1" type="double" size="[1 1]">
+                                [0 ]
+                            </Domain>
+                            <mode index="1" type="double" size="[1 1]">
+                                [0 ]
+                            </mode>
+                            <window index="1" type="double" size="[1 4]">
+                                [0 0 0 0 ]
+                            </window>
+                        </cell>
+                        <cell index="2" type="struct" size="[1 1]">
+                            <Domain index="1" type="double" size="[1 1]">
+                                [0 ]
+                            </Domain>
+                            <mode index="1" type="double" size="[1 1]">
+                                [0 ]
+                            </mode>
+                            <window index="1" type="double" size="[1 4]">
+                                [0 0 0 0 ]
+                            </window>
+                        </cell>
+                        <cell index="3" type="struct" size="[1 1]">
+                            <Domain index="1" type="double" size="[1 1]">
+                                [0 ]
+                            </Domain>
+                            <mode index="1" type="double" size="[1 1]">
+                                [0 ]
+                            </mode>
+                            <window index="1" type="double" size="[1 4]">
+                                [0 0 0 0 ]
+                            </window>
+                        </cell>
+                        <cell index="4" type="struct" size="[1 1]">
+                            <Domain index="1" type="double" size="[1 1]">
+                                [0 ]
+                            </Domain>
+                            <mode index="1" type="double" size="[1 1]">
+                                [0 ]
+                            </mode>
+                            <window index="1" type="double" size="[1 4]">
+                                [0 0 0 0 ]
+                            </window>
+                        </cell>
+                        <cell index="5" type="struct" size="[1 1]">
+                            <Domain index="1" type="double" size="[1 1]">
+                                [0 ]
+                            </Domain>
+                            <mode index="1" type="double" size="[1 1]">
+                                [0 ]
+                            </mode>
+                            <window index="1" type="double" size="[1 4]">
+                                [0 0 0 0 ]
+                            </window>
+                        </cell>
+                        <cell index="6" type="struct" size="[1 1]">
+                            <Domain index="1" type="double" size="[1 1]">
+                                [0 ]
+                            </Domain>
+                            <mode index="1" type="double" size="[1 1]">
+                                [0 ]
+                            </mode>
+                            <window index="1" type="double" size="[1 4]">
+                                [0 0 0 0 ]
+                            </window>
+                        </cell>
+                        <cell index="7" type="struct" size="[1 1]">
+                            <Domain index="1" type="double" size="[1 1]">
+                                [0 ]
+                            </Domain>
+                            <mode index="1" type="double" size="[1 1]">
+                                [0 ]
+                            </mode>
+                            <window index="1" type="double" size="[1 4]">
+                                [0 0 0 0 ]
+                            </window>
+                        </cell>
+                    </excludeRange>
+                </Globals>
+                <LightSources index="1" type="cell" size="[1 7]">
+                    <cell index="1" type="struct" size="[1 1]">
+                        <name index="1" type="char" size="[1 1]">
+                            A
+                        </name>
+                        <lightURegion index="1" type="double" size="[1 5]">
+                            [121.0206 15.2184 26.2257 122.5199 121.0206 ]
+                        </lightURegion>
+                        <lightVRegion index="1" type="double" size="[1 5]">
+                            [126.8046 109.7805 91.8791 124.8353 126.8046 ]
+                        </lightVRegion>
+                        <lightXYRegion index="1" type="struct" size="[1 1]">
+                            <normal index="1" type="double" size="[1 4]">
+                                [-1.4121 -0.9933 0.1152 -0.0756 ]
+                            </normal>
+                            <big index="1" type="double" size="[1 4]">
+                                [-1.4121 -0.9911 0.1563 -0.1389 ]
+                            </big>
+                            <small index="1" type="double" size="[1 4]">
+                                [-1.3427 -1.0716 0.1152 -0.0751 ]
+                            </small>
+                        </lightXYRegion>
+                        <yuvRegion index="1" type="struct" size="[1 1]">
+                            <k2Set index="1" type="double" size="[1 1]">
+                                [1427 ]
+                            </k2Set>
+                            <b0Set index="1" type="double" size="[1 1]">
+                                [123 ]
+                            </b0Set>
+                            <k3Set index="1" type="double" size="[1 1]">
+                                [-262 ]
+                            </k3Set>
+                            <k_ydisSet index="1" type="double" size="[1 1]">
+                                [3498 ]
+                            </k_ydisSet>
+                            <b_ydisSet index="1" type="double" size="[1 1]">
+                                [-7 ]
+                            </b_ydisSet>
+                            <uRefSet index="1" type="double" size="[1 1]">
+                                [128 ]
+                            </uRefSet>
+                            <vRefSet index="1" type="double" size="[1 1]">
+                                [124 ]
+                            </vRefSet>
+                            <disSet index="1" type="double" size="[1 6]">
+                                [106 234 490 746 1002 1130 ]
+                            </disSet>
+                            <tHSet index="1" type="double" size="[1 6]">
+                                [255 255 255 255 255 255 ]
+                            </tHSet>
+                        </yuvRegion>
+                    </cell>
+                    <cell index="2" type="struct" size="[1 1]">
+                        <name index="1" type="char" size="[1 3]">
+                            CWF
+                        </name>
+                        <lightURegion index="1" type="double" size="[1 5]">
+                            [43.9400 65.4299 124.2857 122.7106 43.9400 ]
+                        </lightURegion>
+                        <lightVRegion index="1" type="double" size="[1 5]">
+                            [73.9845 60.3379 123.2577 124.2569 73.9845 ]
+                        </lightVRegion>
+                        <lightXYRegion index="1" type="struct" size="[1 1]">
+                            <normal index="1" type="double" size="[1 4]">
+                                [-0.9894 -0.5576 -0.0283 -0.1406 ]
+                            </normal>
+                            <big index="1" type="double" size="[1 4]">
+                                [-0.9894 -0.5576 -0.0176 -0.1682 ]
+                            </big>
+                            <small index="1" type="double" size="[1 4]">
+                                [-0.8290 -0.6965 -0.0283 -0.1406 ]
+                            </small>
+                        </lightXYRegion>
+                        <yuvRegion index="1" type="struct" size="[1 1]">
+                            <k2Set index="1" type="double" size="[1 1]">
+                                [-1781 ]
+                            </k2Set>
+                            <b0Set index="1" type="double" size="[1 1]">
+                                [53 ]
+                            </b0Set>
+                            <k3Set index="1" type="double" size="[1 1]">
+                                [-7080 ]
+                            </k3Set>
+                            <k_ydisSet index="1" type="double" size="[1 1]">
+                                [3291 ]
+                            </k_ydisSet>
+                            <b_ydisSet index="1" type="double" size="[1 1]">
+                                [4 ]
+                            </b_ydisSet>
+                            <uRefSet index="1" type="double" size="[1 1]">
+                                [128 ]
+                            </uRefSet>
+                            <vRefSet index="1" type="double" size="[1 1]">
+                                [126 ]
+                            </vRefSet>
+                            <disSet index="1" type="double" size="[1 6]">
+                                [76 204 332 844 844 1100 ]
+                            </disSet>
+                            <tHSet index="1" type="double" size="[1 6]">
+                                [255 255 255 255 255 255 ]
+                            </tHSet>
+                        </yuvRegion>
+                    </cell>
+                    <cell index="3" type="struct" size="[1 1]">
+                        <name index="1" type="char" size="[1 3]">
+                            D50
+                        </name>
+                        <lightURegion index="1" type="double" size="[1 5]">
+                            [51.3104 86.4825 125.4893 123.3967 51.3104 ]
+                        </lightURegion>
+                        <lightVRegion index="1" type="double" size="[1 5]">
+                            [68.9735 46.2107 122.5521 123.9155 68.9735 ]
+                        </lightVRegion>
+                        <lightXYRegion index="1" type="struct" size="[1 1]">
+                            <normal index="1" type="double" size="[1 4]">
+                                [-0.5609 -0.2046 0.0912 -0.1576 ]
+                            </normal>
+                            <big index="1" type="double" size="[1 4]">
+                                [-0.5609 -0.2046 0.0992 -0.1715 ]
+                            </big>
+                            <small index="1" type="double" size="[1 4]">
+                                [-0.3854 -0.2274 0.0912 -0.1576 ]
+                            </small>
+                        </lightXYRegion>
+                        <yuvRegion index="1" type="struct" size="[1 1]">
+                            <k2Set index="1" type="double" size="[1 1]">
+                                [-656 ]
+                            </k2Set>
+                            <b0Set index="1" type="double" size="[1 1]">
+                                [-73 ]
+                            </b0Set>
+                            <k3Set index="1" type="double" size="[1 1]">
+                                [-7441 ]
+                            </k3Set>
+                            <k_ydisSet index="1" type="double" size="[1 1]">
+                                [1157 ]
+                            </k_ydisSet>
+                            <b_ydisSet index="1" type="double" size="[1 1]">
+                                [111 ]
+                            </b_ydisSet>
+                            <uRefSet index="1" type="double" size="[1 1]">
+                                [128 ]
+                            </uRefSet>
+                            <vRefSet index="1" type="double" size="[1 1]">
+                                [127 ]
+                            </vRefSet>
+                            <disSet index="1" type="double" size="[1 6]">
+                                [112 144 208 464 592 848 ]
+                            </disSet>
+                            <tHSet index="1" type="double" size="[1 6]">
+                                [255 255 255 255 255 255 ]
+                            </tHSet>
+                        </yuvRegion>
+                    </cell>
+                    <cell index="4" type="struct" size="[1 1]">
+                        <name index="1" type="char" size="[1 3]">
+                            D65
+                        </name>
+                        <lightURegion index="1" type="double" size="[1 5]">
+                            [84.8482 122.8098 126.8121 125.4697 84.8482 ]
+                        </lightURegion>
+                        <lightVRegion index="1" type="double" size="[1 5]">
+                            [46.9469 36.0934 121.7871 122.5494 46.9469 ]
+                        </lightVRegion>
+                        <lightXYRegion index="1" type="struct" size="[1 1]">
+                            <normal index="1" type="double" size="[1 4]">
+                                [-0.2039 0.0905 0.0464 -0.2550 ]
+                            </normal>
+                            <big index="1" type="double" size="[1 4]">
+                                [-0.2053 0.0905 0.0615 -0.2639 ]
+                            </big>
+                            <small index="1" type="double" size="[1 4]">
+                                [-0.1050 0.0725 0.0453 -0.1982 ]
+                            </small>
+                        </lightXYRegion>
+                        <yuvRegion index="1" type="struct" size="[1 1]">
+                            <k2Set index="1" type="double" size="[1 1]">
+                                [-820 ]
+                            </k2Set>
+                            <b0Set index="1" type="double" size="[1 1]">
+                                [-56 ]
+                            </b0Set>
+                            <k3Set index="1" type="double" size="[1 1]">
+                                [-7995 ]
+                            </k3Set>
+                            <k_ydisSet index="1" type="double" size="[1 1]">
+                                [2475 ]
+                            </k_ydisSet>
+                            <b_ydisSet index="1" type="double" size="[1 1]">
+                                [82 ]
+                            </b_ydisSet>
+                            <uRefSet index="1" type="double" size="[1 1]">
+                                [128 ]
+                            </uRefSet>
+                            <vRefSet index="1" type="double" size="[1 1]">
+                                [103 ]
+                            </vRefSet>
+                            <disSet index="1" type="double" size="[1 6]">
+                                [112 144 208 336 400 528 ]
+                            </disSe

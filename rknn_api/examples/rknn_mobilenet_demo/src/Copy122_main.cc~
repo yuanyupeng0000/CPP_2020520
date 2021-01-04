@@ -1,0 +1,724 @@
+<?xml version="1.0" ?>
+<net name="yolov5s-416" version="10">
+	<layers>
+		<layer id="0" name="images" type="Parameter" version="opset1">
+			<data element_type="f16" shape="1,3,416,416"/>
+			<output>
+				<port id="0" precision="FP16">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>416</dim>
+					<dim>416</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="1" name="images/reverse_input_channels24516/Split_input_port_1/value24538_const" type="Const" version="opset1">
+			<data element_type="i64" offset="0" shape="" size="8"/>
+			<output>
+				<port id="1" precision="I64"/>
+			</output>
+		</layer>
+		<layer id="2" name="images/reverse_input_channels24516/Split" type="Split" version="opset1">
+			<data num_splits="3"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>416</dim>
+					<dim>416</dim>
+				</port>
+				<port id="1"/>
+			</input>
+			<output>
+				<port id="2" precision="FP16">
+					<dim>1</dim>
+					<dim>1</dim>
+					<dim>416</dim>
+					<dim>416</dim>
+				</port>
+				<port id="3" precision="FP16">
+					<dim>1</dim>
+					<dim>1</dim>
+					<dim>416</dim>
+					<dim>416</dim>
+				</port>
+				<port id="4" precision="FP16">
+					<dim>1</dim>
+					<dim>1</dim>
+					<dim>416</dim>
+					<dim>416</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="3" name="images/reverse_input_channels24516/Concat" type="Concat" version="opset1">
+			<data axis="1"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>1</dim>
+					<dim>416</dim>
+					<dim>416</dim>
+				</port>
+				<port id="1">
+					<dim>1</dim>
+					<dim>1</dim>
+					<dim>416</dim>
+					<dim>416</dim>
+				</port>
+				<port id="2">
+					<dim>1</dim>
+					<dim>1</dim>
+					<dim>416</dim>
+					<dim>416</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP16">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>416</dim>
+					<dim>416</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="4" name="images/reverse_input_channels24518/Concat24527_const" type="Const" version="opset1">
+			<data element_type="f16" offset="8" shape="1,3,1,1" size="6"/>
+			<output>
+				<port id="1" precision="FP16">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="5" name="Mul_" type="Multiply" version="opset1">
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>416</dim>
+					<dim>416</dim>
+				</port>
+				<port id="1">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP16">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>416</dim>
+					<dim>416</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="6" name="Slice_4/Cast_126037_const" type="Const" version="opset1">
+			<data element_type="i64" offset="14" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="7" name="Slice_4/Cast_226039_const" type="Const" version="opset1">
+			<data element_type="i64" offset="46" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="8" name="Slice_4/Cast_326041_const" type="Const" version="opset1">
+			<data element_type="i64" offset="78" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="9" name="Slice_4" type="StridedSlice" version="opset1">
+			<data begin_mask="1,1,1,1" ellipsis_mask="0,0,0,0" end_mask="1,1,0,1" new_axis_mask="0,0,0,0" shrink_axis_mask="0,0,0,0"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>416</dim>
+					<dim>416</dim>
+				</port>
+				<port id="1">
+					<dim>4</dim>
+				</port>
+				<port id="2">
+					<dim>4</dim>
+				</port>
+				<port id="3">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP16">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>416</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="10" name="Slice_9/Cast_126009_const" type="Const" version="opset1">
+			<data element_type="i64" offset="14" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="11" name="Slice_9/Cast_226011_const" type="Const" version="opset1">
+			<data element_type="i64" offset="110" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="12" name="Slice_9/Cast_326013_const" type="Const" version="opset1">
+			<data element_type="i64" offset="142" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="13" name="Slice_9" type="StridedSlice" version="opset1">
+			<data begin_mask="1,1,1,1" ellipsis_mask="0,0,0,0" end_mask="1,1,1,0" new_axis_mask="0,0,0,0" shrink_axis_mask="0,0,0,0"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>416</dim>
+				</port>
+				<port id="1">
+					<dim>4</dim>
+				</port>
+				<port id="2">
+					<dim>4</dim>
+				</port>
+				<port id="3">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP16">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="14" name="Slice_14/Cast_126071_const" type="Const" version="opset1">
+			<data element_type="i64" offset="174" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="15" name="Slice_14/Cast_226073_const" type="Const" version="opset1">
+			<data element_type="i64" offset="46" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="16" name="Slice_14/Cast_326075_const" type="Const" version="opset1">
+			<data element_type="i64" offset="78" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="17" name="Slice_14" type="StridedSlice" version="opset1">
+			<data begin_mask="1,1,0,1" ellipsis_mask="0,0,0,0" end_mask="1,1,0,1" new_axis_mask="0,0,0,0" shrink_axis_mask="0,0,0,0"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>416</dim>
+					<dim>416</dim>
+				</port>
+				<port id="1">
+					<dim>4</dim>
+				</port>
+				<port id="2">
+					<dim>4</dim>
+				</port>
+				<port id="3">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP16">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>416</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="18" name="Slice_19/Cast_126065_const" type="Const" version="opset1">
+			<data element_type="i64" offset="14" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="19" name="Slice_19/Cast_226067_const" type="Const" version="opset1">
+			<data element_type="i64" offset="110" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="20" name="Slice_19/Cast_326069_const" type="Const" version="opset1">
+			<data element_type="i64" offset="142" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="21" name="Slice_19" type="StridedSlice" version="opset1">
+			<data begin_mask="1,1,1,1" ellipsis_mask="0,0,0,0" end_mask="1,1,1,0" new_axis_mask="0,0,0,0" shrink_axis_mask="0,0,0,0"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>416</dim>
+				</port>
+				<port id="1">
+					<dim>4</dim>
+				</port>
+				<port id="2">
+					<dim>4</dim>
+				</port>
+				<port id="3">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP16">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="22" name="Slice_24/Cast_126015_const" type="Const" version="opset1">
+			<data element_type="i64" offset="14" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="23" name="Slice_24/Cast_226017_const" type="Const" version="opset1">
+			<data element_type="i64" offset="46" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="24" name="Slice_24/Cast_326019_const" type="Const" version="opset1">
+			<data element_type="i64" offset="78" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="25" name="Slice_24" type="StridedSlice" version="opset1">
+			<data begin_mask="1,1,1,1" ellipsis_mask="0,0,0,0" end_mask="1,1,0,1" new_axis_mask="0,0,0,0" shrink_axis_mask="0,0,0,0"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>416</dim>
+					<dim>416</dim>
+				</port>
+				<port id="1">
+					<dim>4</dim>
+				</port>
+				<port id="2">
+					<dim>4</dim>
+				</port>
+				<port id="3">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP16">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>416</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="26" name="Slice_29/Cast_126031_const" type="Const" version="opset1">
+			<data element_type="i64" offset="206" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="27" name="Slice_29/Cast_226033_const" type="Const" version="opset1">
+			<data element_type="i64" offset="110" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="28" name="Slice_29/Cast_326035_const" type="Const" version="opset1">
+			<data element_type="i64" offset="142" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="29" name="Slice_29" type="StridedSlice" version="opset1">
+			<data begin_mask="1,1,1,0" ellipsis_mask="0,0,0,0" end_mask="1,1,1,0" new_axis_mask="0,0,0,0" shrink_axis_mask="0,0,0,0"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>416</dim>
+				</port>
+				<port id="1">
+					<dim>4</dim>
+				</port>
+				<port id="2">
+					<dim>4</dim>
+				</port>
+				<port id="3">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP16">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="30" name="Slice_34/Cast_126051_const" type="Const" version="opset1">
+			<data element_type="i64" offset="174" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="31" name="Slice_34/Cast_226053_const" type="Const" version="opset1">
+			<data element_type="i64" offset="46" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="32" name="Slice_34/Cast_326055_const" type="Const" version="opset1">
+			<data element_type="i64" offset="78" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="33" name="Slice_34" type="StridedSlice" version="opset1">
+			<data begin_mask="1,1,0,1" ellipsis_mask="0,0,0,0" end_mask="1,1,0,1" new_axis_mask="0,0,0,0" shrink_axis_mask="0,0,0,0"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>416</dim>
+					<dim>416</dim>
+				</port>
+				<port id="1">
+					<dim>4</dim>
+				</port>
+				<port id="2">
+					<dim>4</dim>
+				</port>
+				<port id="3">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP16">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>416</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="34" name="Slice_39/Cast_126059_const" type="Const" version="opset1">
+			<data element_type="i64" offset="206" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="35" name="Slice_39/Cast_226061_const" type="Const" version="opset1">
+			<data element_type="i64" offset="110" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="36" name="Slice_39/Cast_326063_const" type="Const" version="opset1">
+			<data element_type="i64" offset="142" shape="4" size="32"/>
+			<output>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="37" name="Slice_39" type="StridedSlice" version="opset1">
+			<data begin_mask="1,1,1,0" ellipsis_mask="0,0,0,0" end_mask="1,1,1,0" new_axis_mask="0,0,0,0" shrink_axis_mask="0,0,0,0"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>416</dim>
+				</port>
+				<port id="1">
+					<dim>4</dim>
+				</port>
+				<port id="2">
+					<dim>4</dim>
+				</port>
+				<port id="3">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP16">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="38" name="Concat_40" type="Concat" version="opset1">
+			<data axis="1"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+				<port id="1">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+				<port id="2">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+				<port id="3">
+					<dim>1</dim>
+					<dim>3</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP16">
+					<dim>1</dim>
+					<dim>12</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="39" name="onnx_initializer_node_model.0.conv.conv.weight/Output_0/Data__const" type="Const" version="opset1">
+			<data element_type="f16" offset="238" shape="32,12,3,3" size="6912"/>
+			<output>
+				<port id="1" precision="FP16">
+					<dim>32</dim>
+					<dim>12</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="40" name="Conv_41/WithoutBiases" type="Convolution" version="opset1">
+			<data dilations="1,1" output_padding="0,0" pads_begin="1,1" pads_end="1,1" strides="1,1"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>12</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+				<port id="1">
+					<dim>32</dim>
+					<dim>12</dim>
+					<dim>3</dim>
+					<dim>3</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP16">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="41" name="Conv_41/Dims7645/copy_const" type="Const" version="opset1">
+			<data element_type="f16" offset="7150" shape="1,32,1,1" size="64"/>
+			<output>
+				<port id="1" precision="FP16">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="42" name="Conv_41" type="Add" version="opset1">
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+				<port id="1">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP16">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="43" name="Constant_42/Output_0/Data_/copy_const" type="Const" version="opset1">
+			<data element_type="f16" offset="7214" shape="1,1,1,1" size="2"/>
+			<output>
+				<port id="1" precision="FP16">
+					<dim>1</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="44" name="Add_43" type="Add" version="opset1">
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+				<port id="1">
+					<dim>1</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP16">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="45" name="Clip_44" type="Clamp" version="opset1">
+			<data max="6.0" min="0.0"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP16">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="46" name="Mul_45" type="Multiply" version="opset1">
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+				<port id="1">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP16">
+					<dim>1</dim>
+					<dim>32</dim>
+					<dim>208</dim>
+					<dim>208</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="47" name="Div_4713701_const" type="Const" version="opset1">
+			<data element_type="f16" offset="7216" shape="64,32,3,3" size="36864"/>
+			<output>
+				<port id="1" precision
