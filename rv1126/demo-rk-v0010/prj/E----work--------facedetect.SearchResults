@@ -1,0 +1,3 @@
+---- 22222222222222 Matches (2 in 2 files) ----
+CountApi.cpp (e:\work\facedetect\src):	printf("22222222222222\n");
+Fd_jpeglib.cpp (e:\work\facedetect\src):	     	//printf("222222222222222\n");

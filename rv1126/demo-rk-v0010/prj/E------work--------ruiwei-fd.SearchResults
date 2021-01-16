@@ -1,0 +1,2 @@
+---- ftp disable Matches (1 in 1 files) ----
+Fd_ftp.c (e:\work\ruiwei-fd\facedetect\src):			printf("ftp disable\n");
