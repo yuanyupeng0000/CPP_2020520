@@ -1,0 +1,1 @@
+python3 object_detection_demo_yolov3_async.py -i 00000000004.jpg -m yolov5s-416.xml -d CPU
