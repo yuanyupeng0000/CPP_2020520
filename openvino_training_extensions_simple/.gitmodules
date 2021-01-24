@@ -1,0 +1,13 @@
+[submodule "cocoapi"]
+	path = external/cocoapi
+	url = https://github.com/cocodataset/cocoapi.git
+	ignore = dirty
+[submodule "models"]
+	path = external/models
+	url = https://github.com/tensorflow/models.git
+[submodule "external/mmdetection"]
+	path = external/mmdetection
+	url = https://github.com/sovrasov/mmdetection/
+[submodule "external/deep-person-reid"]
+	path = external/deep-person-reid
+	url = https://github.com/KaiyangZhou/deep-person-reid.git
